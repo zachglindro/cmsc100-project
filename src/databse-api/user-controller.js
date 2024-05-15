@@ -6,6 +6,7 @@ const User = mongoose.model("User", {
     firstname: String,
     middlename: String,
     lastname: String,
+    usertype: String,
     email: String,
     password: String
 })
@@ -21,8 +22,8 @@ const getUserByEmail = async (req,res) => {
 }
 
 const addUser = async (req,res) => {
-    const { firstname, middlename, lastname, email, password} = req.body
-    const newUser = new User({ firstname, middlename, lastname, email, password})
+    const { firstname, middlename, lastname, usertype, email, password} = req.body
+    const newUser = new User({ firstname, middlename, lastname, usertype, email, password})
 
     const result = await newUser.save()
 
