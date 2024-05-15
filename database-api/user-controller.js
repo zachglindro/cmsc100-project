@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
 
-await mongoose.connect('mongodb+srv://achillesheel0525:jokelangyungpassw0rd@fortesting.q8ml0qz.mongodb.net/?retryWrites=true&w=majority&appName=fortesting');
-
 const User = mongoose.model("User", {
     firstname: String,
     middlename: String,

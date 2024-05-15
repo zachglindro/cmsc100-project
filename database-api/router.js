@@ -1,5 +1,8 @@
 import { getProducts, getProductById, addProduct, deleteProduct } from './product-controller.js';
 import { getUsers, getUserByEmail, addUser, deleteUser } from './user-controller.js';
+import mongoose from 'mongoose';
+
+await mongoose.connect('mongodb+srv://achillesheel0525:jokelangyungpassw0rd@fortesting.q8ml0qz.mongodb.net/?retryWrites=true&w=majority&appName=fortesting');
 
 export default function router(app) {
  	// Allow Cross Origin Resource Sharing
