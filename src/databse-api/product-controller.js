@@ -32,4 +32,4 @@ const deleteProduct = async (req, res) => {
     res.send({ id });
 }
 
-export { getProducts, addProduct, deleteProduct };
+export { getProducts, getProductById, addProduct, deleteProduct };
