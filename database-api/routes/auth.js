@@ -1,7 +1,7 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+import express from 'express';
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const register = async (req,res) => {
     try{
@@ -54,3 +54,4 @@ const login = async (req, res) => {
     }
 }
 
+export { register, login, getUsers };
