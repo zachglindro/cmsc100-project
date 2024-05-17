@@ -1,6 +1,6 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+import express from 'express';
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 const register = async (req,res) => {
     try{
@@ -50,3 +50,5 @@ const login = async (req, res) => {
         res.status(500).json({ error: 'Error logging in.' })
     }
 }
+
+export { register, login, getUsers };

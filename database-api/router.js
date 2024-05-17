@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { register, login } from './routes/auth.js';
+import { register, login, getUsers } from './routes/auth.js';
 
 await mongoose.connect('mongodb+srv://achillesheel0525:jokelangyungpassw0rd@fortesting.q8ml0qz.mongodb.net/farmToTable');
 
