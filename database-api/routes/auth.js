@@ -1,7 +1,11 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+<<<<<<< HEAD
 import jwt from 'jsonwebtoken';
+=======
+import { User } from '../models/user-model.js';
+>>>>>>> 2303228 (fix: backend errors)
 
 const register = async (req,res) => {
     try{

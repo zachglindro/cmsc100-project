@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 
 const orderTransactionSchema = mongoose.Schema('Order_transaction', {
     transactionId: {type: String, required: true},
@@ -12,4 +12,4 @@ const orderTransactionSchema = mongoose.Schema('Order_transaction', {
 
 const OrderTransaction = mongoose.model('Order_transaction', orderTransactionSchema)
 
-module.exports = OrderTransaction
+export { OrderTransaction };
