@@ -15,5 +15,5 @@ export default function router(app) {
 
   app.post('/register', register);
   app.get('/register',  getUsers);
-  app.get('/login', login);
+  app.post('/login', login);
 }

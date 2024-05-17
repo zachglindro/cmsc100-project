@@ -39,7 +39,7 @@ function Login() {
     
             localStorage.setItem('token', 'dummyToken')
         } catch (error) {
-            console.error('Login Error:', error)
+            console.error('Login Error:', error.response.data)
             alert('Login Error!')
         }
     }

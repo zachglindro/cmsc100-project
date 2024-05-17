@@ -1,20 +1,18 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-<<<<<<< HEAD
-import jwt from 'jsonwebtoken';
-=======
 import { User } from '../models/user-model.js';
->>>>>>> 2303228 (fix: backend errors)
+import jwt from 'jsonwebtoken';
 
 const register = async (req,res) => {
     try{
-        const { fname, mname, lname, userType, email, password } = req.body
+        const { fname, lname, userType, email, username, password } = req.body
         const hashedPassword = await bcrypt.hash(password, 10)
-        const newUser = new User({ fname, mname, lname, userType, email, username, password: hashedPassword })
+        const newUser = new User({ fname, lname, userType, email, username, password: hashedPassword })
         await newUser.save()
         res.status(201).json({ message: 'User created successfully.' }) 
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: 'Error signing up.' })
     }
 }
