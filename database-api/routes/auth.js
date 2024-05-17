@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const register = async (req,res) => {
     try{
@@ -41,12 +42,15 @@ const login = async (req, res) => {
 
         // Check if the user is the merchant
         if (isMerchant) {
+            const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1hr' })
             return res.json({ message: 'Login successful!', userType: 'merchant' })
         }
 
         // If not the merchant, redirect to /account
+        const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1hr' })
         res.json({ message: 'Login successful!', userType: 'customer' })
     } catch (error) {
         res.status(500).json({ error: 'Error logging in.' })
     }
 }
+
