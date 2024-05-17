@@ -1,5 +1,6 @@
 import { getProducts, getProductById, addProduct, deleteProduct } from './product-controller.js';
 import { getUsers, getUserByEmail, addUser, deleteUser } from './user-controller.js';
+import { getOrderTransaction, getOrderTransactionById, getOrderTransactionByStatus, addOrderTransaction, deleteOrderTransaction } from './order-transaction-controller.js';
 import mongoose from 'mongoose';
 
 await mongoose.connect('mongodb+srv://achillesheel0525:jokelangyungpassw0rd@fortesting.q8ml0qz.mongodb.net/?retryWrites=true&w=majority&appName=fortesting');
@@ -25,4 +26,12 @@ export default function router(app) {
   app.get('/get-user-by-email', getUserByEmail);
   app.post('/add-user', addUser);
   app.post('/delete-user', deleteUser);
+
+  // routes for order-transaction functions
+  app.get('/get-order-transaction', getOrderTransaction);
+  app.get('/get-order-transaction-by-id', getOrderTransactionById);
+  app.get('/get-order-transaction-by-status', getOrderTransactionByStatus);
+  app.post('/add-order-transaction', addOrderTransaction);
+  app.post('/delete-order-transaction', deleteOrderTransaction);
+
 }
