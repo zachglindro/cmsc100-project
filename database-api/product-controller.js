@@ -7,6 +7,7 @@ const Product = mongoose.model('Product', {
     name: String,
     description: String,
     type: { type: Number, enum: [1, 2, 3] },
+    quantity: Number
 });
 
 const getProducts = async (req, res) => {
@@ -20,8 +21,8 @@ const getProductById = async (req, res) => {
 }
 
 const addProduct = async (req, res) => {
-    const { id, name, description, type } = req.body;
-    const product = new Product({ id, name, description, type });
+    const { id, name, description, type, quantity } = req.body;
+    const product = new Product({ id, name, description, type, quantity });
     await product.save();
     res.send(product);
 }
