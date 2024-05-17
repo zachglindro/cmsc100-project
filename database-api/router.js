@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { register, login } from './routes/auth.js';
 
 await mongoose.connect('mongodb+srv://achillesheel0525:jokelangyungpassw0rd@fortesting.q8ml0qz.mongodb.net/farmToTable');
 
@@ -12,4 +13,7 @@ export default function router(app) {
     next();
   })
 
+  app.post('/register', register);
+  app.get('/register',  getUsers);
+  app.get('/login', login);
 }

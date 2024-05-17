@@ -1,0 +1,31 @@
+* {
+    font-family: "IBM Plex Mono", monospace;
+    letter-spacing: 1px;
+}
+
+.nav-bar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: orange;
+}
+
+/* .logo-div {
+
+} */
+
+.logo-header {
+    color: white;
+}
+
+/* .nav-list-div {
+    
+} */
+
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+
+
