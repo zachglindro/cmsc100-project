@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { register, login, getUsers, getUserByUsername } from './routes/auth.js';
 import { addToCart, getProducts, getCart, updateCart } from './routes/shop.js';
+import { getOrders } from './routes/merchant.js';
 
 await mongoose.connect('mongodb+srv://achillesheel0525:jokelangyungpassw0rd@fortesting.q8ml0qz.mongodb.net/farmToTable');
 
@@ -18,8 +19,11 @@ export default function router(app) {
   app.get('/register',  getUsers);
   app.post('/login', login);
   app.get('/get-user-by-username', getUserByUsername)
-  app.get('/shop/products', getProducts);
+
+  app.get('/products', getProducts);
   app.post('/shop/add-to-cart', addToCart);
   app.get('/shop/get-cart', getCart);
   app.put('/shop/update-cart', updateCart);
+  
+  app.get('/merchant/orders', getOrders);
 }
