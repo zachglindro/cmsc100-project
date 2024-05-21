@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import "../styles/Login.css"
+import logo from '../assets/welcome/logo.png'
+
 
 function Login() {
-    const [users, setUsers] = useState([])
+    // const [users, setUsers] = useState([])
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
@@ -25,6 +28,7 @@ function Login() {
         try {
             const response = await axios.post('http://localhost:3001/login', { username, password })
             const { message, userType } = response.data
+            const token = response.data.token
     
             alert(message)
             setUsername('')
@@ -34,33 +38,42 @@ function Login() {
             if (userType === 'merchant') {
                 navigate('/merchant')
             } else {
-                navigate('/account')
+                navigate('/customer')
             }
     
-            localStorage.setItem('token', 'dummyToken')
+            window.location.reload();
+            localStorage.setItem('token', token)
         } catch (error) {
-            console.error('Login Error:', error.response.data)
+            console.error('Login Error:', error)
             alert('Login Error!')
         }
     }
 
     return (
         <div className='log-in-container'>
+            <img className="background" src="assets/welcome/field.jpg" alt="background"/>
             <div className='log-in-form-container'>
+
+                <img className="logo" src={logo} alt="Logo" />
                 <form className='log-in-form' onSubmit={handleLogin}>
-                {/* email input */}
-                <label> Username </label>
+
                 <br />
+                <p className="log-in"><b><center>LOGIN</center></b></p>
                 <input className='username-input' type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
                 <br />
-                <br />
-                <label> Password </label>
                 <br />
                 <input className='password-input' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 <br />
                 <br />
-                {/* button */}
-                <button className='log-in-button' type='submit'> Log-in </button>
+
+                <div className="loginandsignup"> 
+                <button className='log-in-button' type='submit'> Login </button>
+                <br />
+                <div className="sign-up-link"> 
+
+                <p> No account yet? <a href='http://localhost:3000/signup'> Sign Up </a></p>
+                </div>
+                </div>
                 </form>
             </div>      
         </div>

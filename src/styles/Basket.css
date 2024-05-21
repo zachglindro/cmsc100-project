@@ -1,0 +1,12 @@
+
+.basket-container {
+    width: 350px;
+    height: 100%;
+    background-color: #31370D;
+}
+
+.basket-heading {
+    color: white;
+    margin-left: 25px;
+    margin-top: 25px;
+}

@@ -56,13 +56,13 @@ const login = async (req, res) => {
 
         // Check if the user is the merchant
         if (isMerchant) {
-            const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1hr' })
+            const token = jwt.sign({ userId: user._id, userType: 'merchant' }, SECRET_KEY, { expiresIn: '1hr' })
             console.log(token)
             return res.json({ message: 'Login successful!', userType: 'merchant' })
         }
 
         // If not the merchant, redirect to /account
-        const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1hr' })
+        const token = jwt.sign({ userId: user._id, userType: 'customer' }, SECRET_KEY, { expiresIn: '1hr' })
         console.log(token)
         res.json({ message: 'Login successful!', userType: 'customer' })
     } catch (error) {

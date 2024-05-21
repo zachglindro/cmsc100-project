@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import '../styles/SignUp.css'
 
 function SignUp() {
-  const [user, setUsers] = useState([])
+  // const [user, setUsers] = useState([])
   const [fname, setFname] = useState('')
   const [lname, setLname] = useState('')
   const [userType, setUserType] = useState('Customer')
@@ -41,7 +42,6 @@ function SignUp() {
       navigate('/login')
     })
     .catch((error) => {
-      console.error(error.response.data)
       console.log('Unable to register user!')
     })
   }
@@ -50,33 +50,32 @@ function SignUp() {
     <div className='sign-up-container'>
       <div className='sign-up-form-container'>
         <form className='sign-up-form' onSubmit={handleRegister}>
-          <label> First Name </label>
           <br />
-          <input className='fname-input' type='text' placeholder='First Name' value={fname} onChange={(e) => setFname(e.target.value)} />
+          <div className="sign-up"> SIGN UP </div>
+          <input className='input' type='text' placeholder='First Name' value={fname} onChange={(e) => setFname(e.target.value)} />
+          {/* <br /> */}
           <br />
+          <input className='input' type='text' placeholder='Last Name' value={lname} onChange={(e) => setLname(e.target.value)} />
+          {/* <br /> */}
           <br />
-          <label> Last Name </label>
+          <input className='input' type='text' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
+          {/* <br /> */}
           <br />
-          <input className='lname-input' type='text' placeholder='Last Name' value={lname} onChange={(e) => setLname(e.target.value)} />
+          <input className='input' type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
+          {/* <br /> */}
           <br />
+          <input className='input' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
           <br />
-          <label> Email </label>
-          <br />
-          <input className='email-input' type='text' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
-          <br />
-          <br />
-          <label> Username </label>
-            <br />
-          <input className='username-input' type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
-          <br />
-          <br />
-          <label> Password </label>
-            <br />
-          <input className='password-input' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-          <br />
-          <br />
+          {/* <br /> */}
+          <div className="bottom-container"> 
           {/* button */}
+          <p className="terms"> By clicking sign up, you agree to Field To Feast’s User Agreement, Privacy Policy, and Cookie Policy </p>
+          {/* <br /> */}
           <button className='sign-up-button' type='submit'> Sign Up </button>
+          <br />
+          <p className="log-in-link">Already have an account? Log in<a href='http://localhost:3000/login'> here</a></p>
+          <br />
+          </div>
         </form>
       </div>      
     </div>

@@ -1,0 +1,37 @@
+
+.merchant-container {
+    background-image: url('../assets/welcome/field.jpg');
+    background-size: cover; /* Ensure the image covers the container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Ensure no margin is applied */
+    padding: 0; /* Ensure no padding is applied */
+}
+
+.floating-container {
+    width: 1336px; 
+    height: 550px; 
+    top: 100px; 
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute; 
+    background: rgba(0, 0, 0, 0.80); 
+    border-bottom-left-radius: 30px; 
+    border-bottom-right-radius: 30px; 
+    backdrop-filter: blur(5px);
+}
+
+.welcome-greeting {
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute; 
+    text-align: center; 
+    color: white; 
+    font-size: 70px; 
+    font-weight: 700; 
+    letter-spacing: 1px; 
+    word-wrap: break-word;
+}
