@@ -20,6 +20,8 @@ function App() {
   const decodedToken = token ? jwtDecode(token) : null;
   const userType = decodedToken ? decodedToken.userType : null;
 
+  console.log(token);
+
   return (
     <div className='App'>
       <Navbar />
