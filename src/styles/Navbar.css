@@ -1,0 +1,153 @@
+
+.nav-bar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 1336px;
+    height: 70px;
+    top: 30px;
+    position: absolute;
+    background: #31370D;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-list-div {
+    position: relative;
+    top: 25px;
+    left: 25px;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    gap: 25px;
+}
+
+/* NAVBAR ELEMENTS IN CUSTOMER PAGE */
+.products-btn2 {
+    border-style: none;
+    color: white;
+    background-color: #31370D;
+    font-size: 20px;
+}
+
+.orders-btn2 {
+    border-style: none;
+    color: white;
+    background-color: #31370D;
+    font-size: 20px;
+}
+
+.basket-btn {
+    border-style: none;
+    background-image: url('../assets/customer/basket.png'); 
+    background-color: #31370D;
+    background-size: contain;
+    background-repeat: no-repeat; 
+    background-position: center;
+    width: 30px;
+    height: 30px; 
+    transform: translateY(-3px);
+    margin-left: 900px;
+}
+
+.signout-btn2 {
+    border-style: none;
+    color: white;
+    background-color: #31370D;
+    font-size: 20px;
+}
+
+/* NAVBAR ELEMENTS IN MERCHANT PAGE */
+.dashboard-heading {
+    color: white;
+    font-size: 25px;
+    transform: translateY(-5px);
+}
+
+.accounts-btn {
+    border-style: none;
+    color: white;
+    background-color: #31370D;
+    font-size: 20px;
+    margin-left: 550px;
+}
+
+.products-btn {
+    border-style: none;
+    color: white;
+    background-color: #31370D;
+    font-size: 20px;
+}
+
+.orders-btn {
+    border-style: none;
+    color: white;
+    background-color: #31370D;
+    font-size: 20px;
+}
+
+.sales-btn {
+    border-style: none;
+    color: white;
+    background-color: #31370D;
+    font-size: 20px;
+}
+
+.signout-btn {
+    border-style: none;
+    color: white;
+    background-color: #31370D;
+    font-size: 20px;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Ensure it is on top of other content */
+    display: none; /* Initially hidden */
+  }
+  
+  .sidebar-overlay.show {
+    display: block;
+  }
+  
+  /* Sidebar styles */
+  .sidebar-container {
+    position: fixed;
+    top: 0;
+    right: -350px; /* Initially hidden to the right */
+    width: 350px;
+    height: 100%;
+    background-color: #31370D;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000; /* Ensure it is on top of the overlay */
+  }
+  
+  .sidebar-container.show {
+    right: 0; /* Slide in the sidebar */
+  }
+  
+  /* Close button styles */
+  .close-sidebar-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #31370D;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .close-sidebar-button:hover {
+    background-color: #495617;
+  }
+

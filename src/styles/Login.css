@@ -1,0 +1,126 @@
+.log-in-container {
+    background-image: url('../assets/welcome/field.jpg');
+    background-size: cover; /* Ensure the image covers the container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Ensure no margin is applied */
+    padding: 0; /* Ensure no padding is applied */
+}
+
+.log-in-form-container {
+    display: flex;
+    width: 400px;
+    height: 600px;
+    flex-shrink: 0;
+    top: 50px; 
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute; 
+    background: rgba(0, 0, 0, 0.80); 
+    border-bottom-left-radius: 30px; 
+    border-bottom-right-radius: 30px; 
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    border-radius: 30px;
+    background: rgba(49, 55, 13, 0.80);
+}
+
+.logo{
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+    transform: translateY(10px);
+}
+
+.log-in {
+    font-size: 35px;
+    color: white;
+    transform: translateY(-15px);
+}
+
+.username-input{
+    width: 340px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: rgba(240, 237, 255, 0.80);
+    color: #1C1C1C;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-indent: 10px;
+    transform: translateY(-10px);
+}
+
+.password-input{
+    width: 340px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: rgba(240, 237, 255, 0.80);
+    color: #1C1C1C;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-indent: 10px;
+    transform: translateY(-20px);
+}
+
+.signup{
+    color: white;
+    font-size: 15px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word
+}
+
+.loginandsignup{
+    flex-direction: column;
+    display: flex; 
+    align-items: center;
+}
+
+.login{
+    color: white;
+    font-size: 40px;
+    font-family: Poppins;
+    font-weight: 700;
+    letter-spacing: 0.40px;
+    word-wrap: break-word
+}
+
+.log-in-button{
+    width: 124px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: #FF9800;
+    color: white;
+    font-size: 15px;
+    box-shadow: 0px 8px 21px 0px rgba(0, 0, 0, 0.16);
+    transform: translateY(-20px);
+}
+
+.sign-up-link{
+    width: 220px;
+    height: 21px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transform: translateY(-30px);
+}
+
