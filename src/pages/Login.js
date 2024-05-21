@@ -51,7 +51,6 @@ function Login() {
 
     return (
         <div className='log-in-container'>
-            <img className="background" src="assets/welcome/field.jpg" alt="background"/>
             <div className='log-in-form-container'>
 
                 <img className="logo" src={logo} alt="Logo" />
