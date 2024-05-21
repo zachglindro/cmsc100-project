@@ -1,18 +1,16 @@
 import React from 'react'
 import '../styles/Merchant.css'
 
-function Merchant() {
+function AdminProducts() {
   return (
     <div className='merchant-container'>
       <div class="floating-container">
         <div class="welcome-greeting">
-          WELCOME TO
-          <br/>
-          DASHBOARD!
+          PRODUCTS
         </div>
       </div>
     </div>
   )
 }
 
-export default Merchant
+export default AdminProducts
