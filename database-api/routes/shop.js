@@ -3,11 +3,28 @@ import { Product } from "../models/product-model.js";
 const getProducts = async (req, res) => {
   try {
     const products = await Product.find();
+    
     res.status(201).json(products);
   } catch (error) {
     res.status(500).json({ error: "Unable to get products." });
   }
 };
+
+// in query: attribute = attribute to be sorted on, order = 'asc' for ascending 'desc' for descending
+// Sample usage: http://localhost:3001/products-sorted?attribute=name&order=asc
+const getProductsSorted = async (req,res) => {
+  try {
+    const sortObject = {};
+    sortObject[req.query.attribute] = (req.query.order === 'asc' ? 1 : -1);
+
+    const products = await Product.find({}).sort(sortObject).exec();
+
+    res.status(201).json(products);
+  } catch (error) {
+    res.status(500).json({ error: "Unable to get sorted products." });
+    console.log(error);
+  }
+}
 
 const addToCart = async (req, res) => {
   const productId = req.body.productId;
@@ -67,4 +84,4 @@ const checkOut = async (req, res) => {
   }
 };
 
-export { getProducts, addToCart, getCart, updateCart, checkOut };
+export { getProducts, getProductsSorted, addToCart, getCart, updateCart, checkOut };
