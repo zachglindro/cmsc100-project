@@ -1,15 +1,15 @@
 import React from 'react'
 // import { jwtDecode } from 'jwt-decode'
 // import './Products.css'
-import '../styles/Customer.css'
+import '../styles/Products.css'
+import ProductCards from '../components/Product-Cards'
 
 function Products() {
+
   return (
-    <div className='customer-container'>
+    <div className='products-container'>
       <div className="floating-container">
-        <div className="welcome-greeting">
-          PRODUCTS
-        </div>
+          <ProductCards /> 
       </div>
     </div>
   )

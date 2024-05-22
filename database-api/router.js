@@ -21,12 +21,12 @@ export default function router(app) {
   app.post('/login', login);
   app.get('/get-user-by-username', getUserByUsername)
 
-  app.get('/products', getProducts);
-  app.get('/products-sorted', getProductsSorted);
-  app.post('/shop/add-to-cart', addToCart);
-  app.get('/shop/get-cart', getCart);
-  app.put('/shop/update-cart', updateCart);
-  app.get('/checkout/cart', getCheckoutCart);
+  app.get('/products', getProducts); // function location: shop.js; front-end: Products.js
+  app.get('/products-sorted', getProductsSorted); // function location: shop.js; front-end: Products.js
+  app.post('/shop/add-to-cart', addToCart); // function location: shop.js; front-end: Basket.js
+  app.get('/shop/get-cart', getCart); // function location: shop.js; front-end: Basket.js
+  app.put('/shop/update-cart', updateCart); // function location: shop.js; front-end: Basket.js
+  app.get('/checkout/cart', getCheckoutCart); // function location: shop.js; front-end: Basket.js
   
-  app.get('/merchant/orders', getOrders);
+  app.get('/merchant/orders', getOrders); // function location: merchant.js; front-end: Merchant/Orders.js
 }
