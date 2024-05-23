@@ -1,4 +1,5 @@
 import { Product } from "../models/product-model.js";
+import { User } from "../models/user-model.js";
 
 const getProducts = async (req, res) => {
   try {
@@ -26,23 +27,48 @@ const getProductsSorted = async (req, res) => {
   }
 };
 
+const getProductByName = async (req,res) => {
+  try {
+      const product = await Product.findOne({name: req.query.name})
+      res.status(201).json(product)
+  }
+  catch (error) {
+      res.status(500).json({error: 'Product not found'})
+  }
+}
+
 const addToCart = async (req, res) => {
   const productId = req.body.productId;
-  const user = req.body.user;
+  const userId = req.body.userId;
+  var productInCart = false;
 
   try {
-    const product = await Product.findById(productId);
+    const product = await Product.findOne({_id: productId});
+    const user = await User.findOne({_id: userId});
+
 
     if (!product) {
       res.status(404).json({ error: "Product not found." });
     }
+    
+    for (let item of user.shoppingCart) {
+      if (item.id === productId) {
+        item.quantity = item.quantity+1
+        productInCart = true
+      }
+    }
 
-    user.shoppingCart.push(product);
+    if(!productInCart){
+      product.quantity = 1;
+      user.shoppingCart.push(product);
+    }
+    
     await user.save();
 
     res.status(201).json({ message: "Product added to cart." });
-  } catch {
+  } catch (error){
     res.status(500).json({ error: "Unable to add product to cart." });
+    console.log(error)
   }
 };
 
@@ -87,6 +113,7 @@ const checkOut = async (req, res) => {
 export {
   getProducts,
   getProductsSorted,
+  getProductByName,
   addToCart,
   getCart,
   updateCart,
