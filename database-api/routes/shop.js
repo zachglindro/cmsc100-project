@@ -1,3 +1,4 @@
+import { User } from "../models/user-model.js";
 import { Product } from "../models/product-model.js";
 
 const getProducts = async (req, res) => {
@@ -28,20 +29,27 @@ const getProductsSorted = async (req, res) => {
 
 const addToCart = async (req, res) => {
   const productId = req.body.productId;
-  const user = req.body.user;
+  const userId = req.body.userId;
 
   try {
     const product = await Product.findById(productId);
 
     if (!product) {
-      res.status(404).json({ error: "Product not found." });
+      return res.status(404).json({ error: "Product not found." });
+    }
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
     }
 
     user.shoppingCart.push(product);
     await user.save();
 
     res.status(201).json({ message: "Product added to cart." });
-  } catch {
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Unable to add product to cart." });
   }
 };

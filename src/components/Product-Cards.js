@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
-import '../styles/Product-Cards.css'
+import '../styles/Product-Cards.css';
 
 function ProductCards() {
+    const token = localStorage.getItem('token');
+    const decodedToken = token ? jwtDecode(token) : null;
+    const userId = decodedToken ? decodedToken.userId : null;
+
     const [products, setProducts] = useState([]);
-    const user = null;
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -19,33 +23,34 @@ function ProductCards() {
         fetchProducts();
     }, []);
 
-    const handleAddToCart = async (event, productId) => {
+    const handleAddToCart = async (event, productId, userId) => {
         event.preventDefault();
+        
         try {
-            const response = await axios.post('http://localhost:3001/addToCart', { productId, user });
-            const message = response.data;
-            const token = response.data.token;
-
-            window.location.reload();
-            localStorage.setItem('token', token);
+            const res = await axios.post('http://localhost:3001/shop/add-to-cart', {
+                productId: productId,
+                userId: userId
+            });
+            
+            console.log(res.data.message); // Optional: Log success message
         } catch (error) {
-            console.error('Add to Cart Error:', error);
-            alert('Add to Cart Error!');
+            console.error('Error adding product to cart:', error);
         }
     };
+    
 
     return (
         <div className='product-cards-container'>
             <ul className='product-cards'>
                 {products.map(product => (
-                    <div className='product-card' key={product.id}>
+                    <div className='product-card' key={product._id}>
                         <li>
                             <center><img src={product.img} alt={product.name} className="product-image" /></center>
                             <p className='product-name'><b><i>{product.name}</i></b></p>
                             <p className='product-price'>${product.price}</p>
                             <p className='product-desc'>{product.description}</p>
                             <br />
-                            <center><button className='add-to-cart' onClick={(event) => handleAddToCart(event, product.id)}><b> ADD TO CART </b></button></center>
+                            <center><button className='add-to-cart' onClick={(event) => handleAddToCart(event, product._id, userId)}><b> ADD TO CART </b></button></center>
                         </li>
                     </div>
                 ))}
