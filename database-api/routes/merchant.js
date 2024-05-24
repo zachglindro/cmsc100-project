@@ -1,4 +1,5 @@
 import { OrderTransaction } from "../models/order-transaction-model.js";
+import { Product } from "../models/product-model.js";
 
 const getOrders = async (req, res) => {
   try {
@@ -9,31 +10,40 @@ const getOrders = async (req, res) => {
   }
 };
 
-const createOrder = async (req,res) => {
-  try{
-    const {transactionId, productId, orderQty, email, dateOrdered, time} = req.body
-    
-    const newOrder = new OrderTransaction({transactionId, productId, orderQty, email, dateOrdered, time, orderStatus: 1})
-    
-    res.status(201).json({message: "Order transaction successfully created"});
+const getActiveOrders = async (req, res) => {
+  try {
+    const orders = await OrderTransaction.find({orderStatus: '0'});
+    res.status(201).json(orders);
   } catch (error) {
-    res.status(500).json({error: "Unable to create order transaction"})
+    res.status(500).json({ error: "Unable to get orders." });
+  }
+}; 
+
+const getOrderByUserAndProduct = async (req,res) => {
+  try{
+    const orderTransaction = await OrderTransaction.findOne({userId: req.query.userId, productId: req.query.productId})
+    res.status(201).json(orderTransaction)
+  } catch (error) {
+    res.status(500).json({error: 'Order Transaction not found'})
   }
 }
 
 const confirmOrder = async (req,res) => {
   try {
-    transactionId = req.body.transactionId
+    const orderTransaction = await OrderTransaction.findOne({_id: req.query.transactionId})
 
-    await db.collection('Order-transactions').updateOne(
-      {transactionId: transactionId},
-      { $set: {orderStatus: 2}}
-    )
+    orderTransaction.orderStatus = '1'
+    await orderTransaction.save()
+    
+    let product = await Product.findOne({_id: orderTransaction.productId})
+    
+    product.quantity = product.quantity - orderTransaction.orderQty
+    await product.save()
 
     res.status(201).json({message: "Order successfully confirmed"})
   } catch (error) {
-
+    res.status(500).json({error: 'Unable to confirm order'})
   }
 }
 
-export { getOrders };
+export { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder };

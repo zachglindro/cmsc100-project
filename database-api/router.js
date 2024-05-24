@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
 import { register, login, getUsers, getUserByUsername } from './routes/auth.js';
-import { addToCart, getProducts, getProductsSorted, getProductByName, getCart, updateCart } from './routes/shop.js';
-import { getCheckoutCart } from './routes/checkout.js';
-import { getOrders } from './routes/merchant.js';
+import { addToCart, getProducts, getProductsSorted, getProductByName, getCart, checkOut, cancelOrder } from './routes/shop.js';
+import { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder } from './routes/merchant.js';
 
 await mongoose.connect('mongodb+srv://achillesheel0525:jokelangyungpassw0rd@fortesting.q8ml0qz.mongodb.net/farmToTable');
 
@@ -16,18 +15,21 @@ export default function router(app) {
     next();
   })
 
-  app.post('/register', register);
-  app.get('/register',  getUsers);
-  app.post('/login', login);
+  app.post('/register', register)
+  app.get('/register',  getUsers)
+  app.post('/login', login)
   app.get('/get-user-by-username', getUserByUsername)
 
   app.get('/products', getProducts);
-  app.get('/get-product-by-name', getProductByName);
-  app.get('/products-sorted', getProductsSorted);
-  app.post('/add-to-cart', addToCart);
-  app.get('/get-cart', getCart);
-  app.put('/update-cart', updateCart);
-  app.get('/checkout/cart', getCheckoutCart);
+  app.get('/get-product-by-name', getProductByName)
+  app.get('/products-sorted', getProductsSorted)
+  app.post('/add-to-cart', addToCart)
+  app.get('/get-cart', getCart)
+  app.get('/checkout', checkOut)
+  app.get('/cancel-order', cancelOrder)
   
-  app.get('/merchant/orders', getOrders);
+  app.get('/get-orders', getOrders)
+  app.get('/get-active-orders', getActiveOrders)
+  app.get('/get-order-by-user-product', getOrderByUserAndProduct)
+  app.get('/confirm-order', confirmOrder)
 }
