@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { register, login, getUsers, getUserByUsername } from './routes/auth.js';
-import { addToCart, removeFromCart, getProducts, getProductsSorted, getProductByName, getCart, checkOut, cancelOrder, removeFromCart } from './routes/shop.js';
+import { addToCart, removeFromCart, getProducts, getProductsSorted, getProductByName, getCart, checkOut, cancelOrder } from './routes/shop.js';
 import { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder } from './routes/merchant.js';
 
 await mongoose.connect('mongodb+srv://achillesheel0525:jokelangyungpassw0rd@fortesting.q8ml0qz.mongodb.net/farmToTable');
