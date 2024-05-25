@@ -9,4 +9,110 @@
     color: white;
     margin-left: 25px;
     margin-top: 25px;
+    letter-spacing: 1px;
+}
+
+.total-items {
+    color: white;
+    margin-left: 25px;
+    letter-spacing: 1px;
+}
+
+.items-in-basket {
+    /* border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: none;
+    border-right-style: none;
+    border-radius: 5px;
+    border-color: #FF9800; */
+    margin: 10px;
+    margin-left: 25px;
+    max-height: 490px; /* Set maximum height for the container */
+    overflow-y: scroll; /* Add scrollbar for vertical overflow */
+}
+
+.items-in-basket::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+.items-in-basket::-webkit-scrollbar-track {
+    background: rgba(217, 217, 217, 0.2); /* Track color with low opacity */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+.items-in-basket::-webkit-scrollbar-thumb {
+    background: rgba(217, 217, 217, 0.4); /* Thumb color with higher opacity */
+    border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.items-in-basket::-webkit-scrollbar-thumb:hover {
+    background: rgba(217, 217, 217, 0.6); /* Darker color on hover */
+}
+
+/* Custom scrollbar styles for Firefox */
+.items-in-basket {
+    scrollbar-width: thin; /* Narrow scrollbar */
+    scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2); /* Thumb and track color */
+}
+
+.basket-item {
+    width: 280px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #FF9800;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.item-name{
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.item-qty{
+    color: white;
+    letter-spacing: 1px;
+}
+
+.item-amount {
+    color: white;
+    letter-spacing: 1px;
+}
+
+.remove-btn {
+    background-color: #FF9800;
+    color: white;
+    border-style: none;
+    border-radius: 5px;
+    font-size: 15px;
+    align-self: center;
+    padding: 5px;
+    margin-left: 0%;
+    margin-top: 10px;
+    transform: translateX(185px);
+}
+
+.sub-total {
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-left: 25px;
+}
+
+.check-out-btn {
+    width: 300px;
+    height: 40px;
+    background: #FF9800;
+    border-style: none; 
+    border-radius: 30px;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 25px;
+    margin-right: 25px;
 }
