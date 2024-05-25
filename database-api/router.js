@@ -20,6 +20,7 @@ export default function router(app) {
   app.post('/login', login)
   app.get('/get-user-by-username', getUserByUsername)
 
+
   app.get('/products', getProducts);
   app.get('/get-product-by-name', getProductByName)
   app.get('/products-sorted', getProductsSorted)

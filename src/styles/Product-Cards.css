@@ -1,0 +1,107 @@
+.product-cards-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    overflow-y: auto; /* Add vertical scrollbar if content overflows */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+/* Custom scrollbar styles for Webkit browsers */
+.product-cards-container::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+.product-cards-container::-webkit-scrollbar-track {
+    background: rgba(217, 217, 217, 0.2); /* Track color with low opacity */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+.product-cards-container::-webkit-scrollbar-thumb {
+    background: rgba(217, 217, 217, 0.4); /* Thumb color with higher opacity */
+    border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.product-cards-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(217, 217, 217, 0.6); /* Darker color on hover */
+}
+
+/* Custom scrollbar styles for Firefox */
+.product-cards-container {
+    scrollbar-width: thin; /* Narrow scrollbar */
+    scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2); /* Thumb and track color */
+}
+
+.product-cards {
+    list-style-type: none;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 40px;
+}
+
+.product-card {
+    width: 350px; 
+    height: 450px; 
+    background: rgba(217, 217, 217, 0.4);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: space-between; /* Space out the content vertically */
+    padding: 20px; /* Padding inside the card */
+    margin-bottom: 20px;
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+    position: relative;
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.product-image {
+    height: 200px;
+    width: 280px;
+    margin-top: 10px;
+    border-radius: 10px;
+    object-fit: cover; /* Ensure the image covers the space */
+}
+
+.product-name {
+    padding-top: 5px;
+    margin-bottom: 0;
+    color: black;
+    font-size: 22px;
+    text-align: center; /* Center-align text */
+}
+
+.product-price {
+    margin-top: 0;
+    font-size: 20px;
+    text-align: center; /* Center-align text */
+}
+
+.product-desc {
+    margin-top: 10px;
+    font-size: 15px;
+    text-align: center; /* Center-align text */
+}
+
+.add-to-cart {
+    width: 180px;
+    height: 50px;
+    background: #FF9800;
+    border-style: none; 
+    border-radius: 30px;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 10px;
+    transform: translateY(-20px);
+}
