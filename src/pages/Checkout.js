@@ -43,7 +43,7 @@ function Checkout() {
     <div className='checkout-container'>
       <div className='floating-container'>
         <div className='items-summary-container'>
-          <p className='checkout-heading'><b>Checkout</b></p>
+          <p className='checkout-heading'><b>CHECKOUT</b></p>
           <div className='items-summary'>
             <ul className='checkout-basket-list'>
               {cart.map(item => (

@@ -117,33 +117,53 @@ const checkOut = async (req, res) => {
   try {
     const user = await User.findOne({_id: userId});
 
+    // const shippingFee = 45;  // Define the shipping fee
+    // const subtotal = user.shoppingCart.reduce((total, item) => total + item.price * item.quantity, 0);
+    // const amountToPay = subtotal + shippingFee;
+
     for (let item of user.shoppingCart) {
-      let product = await Product.findOne({_id: item._id})
-      product.quantity = product.quantity - item.quantity
+      let product = await Product.findOne({_id: item._id});
+      product.quantity = product.quantity - item.quantity;
 
-      await product.save()
+      await product.save();
 
-      const currentDateTime = new Date()
+      const currentDateTime = new Date();
+      const amountToPay = item.price*item.quantity;
 
       const newOrderTransaction = new OrderTransaction({
         productId: item._id,
+        productName: item.name,
         userId: user._id,
         orderQty: item.quantity,
         orderStatus: '0',
         email: user.email,
         dateOrdered: currentDateTime,
-      })
+        amountToPay: amountToPay 
+      });
 
-      await newOrderTransaction.save()
+      await newOrderTransaction.save();
     }
 
     user.shoppingCart = [];
-    await user.save()
+    await user.save();
 
     res.status(201).json({ message: "Checkout successful." });
   } catch (error) {
     res.status(500).json({ error: "Unable to checkout." });
-    console.log(error)
+    console.log(error);
+  }
+};
+
+
+const getUserOrderTransactions = async (req, res) => {
+  const userId = req.query.userId;
+
+  try {
+    const orderTransactions = await OrderTransaction.find({ userId: userId });
+    res.status(200).json(orderTransactions);
+  } catch (error) {
+    res.status(500).json({ error: "Unable to retrieve order transactions." });
+    console.log(error);
   }
 };
 
@@ -168,5 +188,6 @@ export {
   removeFromCart,
   getCart,
   checkOut,
+  getUserOrderTransactions,
   cancelOrder
 };

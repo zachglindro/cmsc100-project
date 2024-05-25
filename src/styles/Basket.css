@@ -27,7 +27,7 @@
     border-color: #FF9800; */
     margin: 10px;
     margin-left: 25px;
-    max-height: 490px; /* Set maximum height for the container */
+    height: 490px; /* Set maximum height for the container */
     overflow-y: scroll; /* Add scrollbar for vertical overflow */
 }
 
