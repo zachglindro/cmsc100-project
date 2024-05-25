@@ -49,25 +49,23 @@ const addToCart = async (req, res) => {
     const product = await Product.findOne({_id: productId});
     const user = await User.findOne({_id: userId});
 
-
     if (!product) {
       return res.status(404).json({ error: "Product not found." });
     }
 
-    const user = await User.findById(userId);
-
     if (!user) {
       return res.status(404).json({ error: "User not found." });
     }
-    
+
     for (let item of user.shoppingCart) {
-      if (item.id === productId) {
-        item.quantity = item.quantity+1
-        productInCart = true
+      if (item._id.equals(productId)) { // Assuming _id is an ObjectId, use .equals() for comparison
+        item.quantity = item.quantity + 1;
+        productInCart = true;
+        break; // Exit loop once the product is found
       }
     }
 
-    if(!productInCart){
+    if (!productInCart) {
       product.quantity = 1;
       user.shoppingCart.push(product);
     }
@@ -75,9 +73,9 @@ const addToCart = async (req, res) => {
     await user.save();
 
     res.status(201).json({ message: "Product added to cart." });
-  } catch (error){
+  } catch (error) {
     res.status(500).json({ error: "Unable to add product to cart." });
-    console.log(error)
+    console.error(error);
   }
 };
 
