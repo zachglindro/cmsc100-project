@@ -16,7 +16,7 @@ const getUsers = async (req, res) => {
 
 const getUserByUsername = async (req,res) => {
     try {
-        const user = await User.findOne({username: req.body.username})
+        const user = await User.findOne({username: req.query.username})
         res.status(201).json(user)
     }
     catch (error) {
