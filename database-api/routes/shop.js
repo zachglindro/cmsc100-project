@@ -87,14 +87,9 @@ const removeFromCart = async (req,res) => {
       return res.status(404).json({ error: "User not found." });
     }
     
-    for (let item of user.shoppingCart) {
-      if (item.id === productId) {
-        const index = user.shoppingCart.indexOf(item)
-        user.shoppingCart = user.shoppingCart.splice(index,1)
-      }
-    }
-    
+    user.shoppingCart = user.shoppingCart.filter(item => item.id !== productId);
     await user.save();
+
     res.status(201).json({ message: "Product removed from cart." });
   } catch (error){
     res.status(500).json({ error: "Unable to remove product from cart." });
