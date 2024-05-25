@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     username: {type: String, required: true, unique: true},
     email: {type: String, required: true},
     password: {type: String, required: true},
-    shoppingCart: {type: [Product.schema]},
+    shoppingCart: {type: [Product.schema]}
 });
 
 const User = mongoose.model('User', userSchema);
