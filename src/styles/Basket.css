@@ -57,12 +57,12 @@
 
 .basket-item {
     width: 280px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #FF9800;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    padding: 10px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #FF9800;
+    /* border-radius: 10px; */
+    margin-bottom: 5px;
+    padding: 15px;
 }
 
 .item-name{
@@ -99,6 +99,7 @@
     font-size: 20px;
     letter-spacing: 1px;
     margin-left: 25px;
+    margin-bottom: 5px;
 }
 
 .check-out-btn {

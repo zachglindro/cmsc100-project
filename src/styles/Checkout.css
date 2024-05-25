@@ -1,0 +1,167 @@
+.checkout-container {
+    background-image: url('../assets/welcome/field.jpg');
+    background-size: cover; /* Ensure the image covers the container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Ensure no margin is applied */
+    padding: 0; /* Ensure no padding is applied */
+}
+
+.floating-container {
+    width: 1336px; 
+    height: 550px; 
+    top: 100px; 
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute; 
+    background: rgba(0, 0, 0, 0.80); 
+    border-bottom-left-radius: 30px; 
+    border-bottom-right-radius: 30px; 
+    backdrop-filter: blur(5px);
+    display: flex;
+}
+
+.items-summary-container {
+    width: 800px;
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-right-color: white;
+}
+
+.checkout-heading {
+    color: white;
+    font-size: 60px;
+    letter-spacing: 1px;
+    margin-top: 25px;
+    margin-left: 50px;
+}
+
+.items-summary {
+    margin-right: 10px;
+    max-height: 370px; /* Set maximum height for the container */
+    overflow-y: auto; /* Add scrollbar for vertical overflow */
+}
+
+.items-summary::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+    border-radius: 45px;
+}
+
+.items-summary::-webkit-scrollbar-track {
+    background: rgba(217, 217, 217, 0.2); /* Track color with low opacity */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+.items-summary::-webkit-scrollbar-thumb {
+    background: rgba(217, 217, 217, 0.4); /* Thumb color with higher opacity */
+    border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.items-summary::-webkit-scrollbar-thumb:hover {
+    background: rgba(217, 217, 217, 0.6); /* Darker color on hover */
+}
+
+/* Custom scrollbar styles for Firefox */
+.items-summary {
+    scrollbar-width: thin; /* Narrow scrollbar */
+    scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2); /* Thumb and track color */
+}
+
+.checkout-basket-list {
+    list-style: none;
+    margin-left: 90px;
+}
+
+.item-details-container {
+    padding-left: 25px;
+}
+.checkout-item {
+    width: 600px;
+    height: 110px;
+    display: flex;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #FF9800;
+    padding-top: 10px;
+    padding-bottom: 10PX;
+}
+
+.checkout-item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover; /* Ensure the image covers the space */
+    align-self: center;
+}
+
+.checkout-item-name {
+    color: white;
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+.checkout-item-qty {
+    color: white;
+    letter-spacing: 1px;
+}
+
+.checkout-item-amount {
+    color: white;
+    font-size: 20px;
+    margin-left: 400px;
+    letter-spacing: 1px;
+}
+
+.computation-summary-container {
+    align-content: flex-end;
+    padding-left: 50px;
+    padding-bottom: 30px;
+}
+
+.checkout-subtotal, .checkout-sf, .checkout-mop {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.checkout-atp {
+    color: white;
+    font-size: 25px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.confirm-check-out-btn {
+    width: 435px;
+    height: 40px;
+    background: #FF9800;
+    border-style: none; 
+    border-radius: 30px;
+    color: white;
+    font-size: 25px;
+}
+
+.spacing-subtotal {
+    display: inline-block;
+    width: 250px; /* Adjust the width to control the space */
+}
+
+.spacing-sf {
+    display: inline-block;
+    width: 220px; /* Adjust the width to control the space */
+}
+
+.spacing-mop {
+    display: inline-block;
+    width: 70px; /* Adjust the width to control the space */
+}
+
+.spacing-atp {
+    display: inline-block;
+    width: 120px; /* Adjust the width to control the space */
+}
+  
+
+

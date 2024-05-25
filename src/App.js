@@ -8,6 +8,7 @@ import Merchant from './pages/Merchant';
 import Products from './pages/Products';
 import Orders from './pages/Orders';
 import Basket from './pages/Basket.js';
+import Checkout from './pages/Checkout.js';
 import AdminAccounts from './pages/Admin-Accounts.js';
 import AdminProducts from './pages/Admin-Products.js';
 import AdminOrders from './pages/Admin-Orders.js';
@@ -36,6 +37,7 @@ function App() {
             <Route path='/products' element={<Products />} />
             <Route path='/orders' element={<Orders />} />
             <Route path='/basket' element={<Basket />} />
+            <Route path='/checkoutpage' element={<Checkout />} />
           </>
         )}
         {/* Render routes for merchants */}

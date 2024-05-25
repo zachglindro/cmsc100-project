@@ -43,6 +43,7 @@ function ProductCards() {
                 userId: userId
             });
             
+            alert('Items successfully added to basket!');
             console.log(res.data.message); // Optional: Log success message
         } catch (error) {
             console.error('Error adding product to cart:', error);
