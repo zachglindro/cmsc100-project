@@ -44,12 +44,9 @@ const addToCart = async (req, res) => {
   const productId = req.body.productId;
   const userId = req.body.userId;
   var productInCart = false;
-
   try {
     const product = await Product.findOne({_id: productId});
     const user = await User.findOne({_id: userId});
-
-
     if (!product) {
       return res.status(404).json({ error: "Product not found." });
     }
@@ -63,14 +60,12 @@ const addToCart = async (req, res) => {
         productInCart = true
       }
     }
-
     if(!productInCart){
       product.quantity = 1;
       user.shoppingCart.push(product);
     }
     
     await user.save();
-
     res.status(201).json({ message: "Product added to cart." });
   } catch (error){
     res.status(500).json({ error: "Unable to add product to cart." });

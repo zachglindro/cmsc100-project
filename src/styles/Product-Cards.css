@@ -6,6 +6,7 @@
     justify-content: space-evenly;
     overflow-y: auto; /* Add vertical scrollbar if content overflows */
     box-sizing: border-box; /* Include padding and border in the width */
+    padding-top: 30px;
 }
 
 /* Custom scrollbar styles for Webkit browsers */
@@ -33,9 +34,56 @@
     scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2); /* Thumb and track color */
 }
 
+.products-heading {
+    color: white;
+    font-size: 40px;
+    letter-spacing: 1px;
+}
+
+.drop-down-container {
+    display: flex;
+    gap: 20px;
+}
+
+.sort-attribute {
+    margin-left: 515px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.sort-order {
+   color: white;
+   letter-spacing: 1px;
+}
+
+#sort-attribute-menu {
+    background-color: #31370D;
+    color: white;
+    letter-spacing: 1px;
+    border-style: none;
+    width: 90px;
+    height: 50px;
+    padding-left: 10px;
+}
+
+#sort-order-menu {
+    background-color: #31370D;
+    color: white;
+    letter-spacing: 1px;
+    border-style: none;
+    width: 125px;
+    height: 50px;
+    padding-left: 10px;
+}
+
+#sort-attribute-menu :hover,
+#sort-order-menu :hover {
+    color: #FF9800 !important;
+}
+
 .product-cards {
     list-style-type: none;
-    padding-top: 50px;
+    padding-top: 30px;
     padding-bottom: 50px;
     padding-left: 50px;
     padding-right: 50px;
