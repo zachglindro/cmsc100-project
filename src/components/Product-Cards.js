@@ -27,7 +27,7 @@ function ProductCards({ sortAttribute, sortOrder }) {
         event.preventDefault();
 
         try {
-            const res = await axios.post('http://localhost:3001/shop/add-to-cart', {
+            const res = await axios.post('http://localhost:3001/add-to-cart', {
                 productId: productId,
                 userId: userId
             });
