@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { register, login, getUsers, getUserByUsername } from './routes/auth.js';
 import { addToCart, removeFromCart, getProducts, getProductsSorted, getProductByName, getCart, checkOut, getUserOrderTransactions, cancelOrder } from './routes/shop.js';
-import { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder, getConfirmedOrders } from './routes/merchant.js';
+import { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder, generateSalesReportByProduct, generateSalesReportByDate } from './routes/merchant.js';
 import { getCheckoutCart } from './routes/checkout.js';
 
 await mongoose.connect('mongodb+srv://achillesheel0525:jokelangyungpassw0rd@fortesting.q8ml0qz.mongodb.net/farmToTable');
@@ -38,4 +38,6 @@ export default function router(app) {
   app.get('/get-confirmed-orders', getConfirmedOrders)
   app.get('/get-order-by-user-product', getOrderByUserAndProduct)
   app.get('/confirm-order', confirmOrder)
+  app.get('/generate-sales-report-by-product', generateSalesReportByProduct)
+  app.get('/generate-sales-report-by-date', generateSalesReportByDate)
 }
