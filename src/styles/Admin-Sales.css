@@ -54,3 +54,92 @@
     height: 50px;
     padding-left: 10px;
 }
+
+.sales-summary-table {
+    width: 1250px;
+    height: 375px;
+    background: rgba(239, 237, 255, 0.30);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    
+}
+
+.sales-summary-table::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 45px;
+}
+
+.sales-summary-table::-webkit-scrollbar-track {
+    background: rgba(217, 217, 217, 0.2);
+    border-radius: 10px;
+}
+
+.sales-summary-table::-webkit-scrollbar-thumb {
+    background: rgba(217, 217, 217, 0.4);
+    border-radius: 10px;
+}
+
+.sales-summary-table::-webkit-scrollbar-thumb:hover {
+    background: rgba(217, 217, 217, 0.6);
+}
+
+.sales-summary-table {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2);
+}
+
+.sales-summary-table {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2);
+}
+
+.sales-summary {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.product-sales {
+    display: flex;
+    height: 185px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 5px;
+    color: white;
+    border-radius: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.product-sales p {
+    margin: 0;
+    text-align: center;
+}
+
+.sales-details-div {
+    width: 40%;
+}
+
+.prod-id, .prod-name, .prod-sales-qty {
+    text-align: left !important;
+}
+
+.prod-name {
+    padding-bottom: 10px;
+}
+
+.total-sales {
+    color: white;
+    font-size: 25px;
+    transform: translateX(450px);
+}

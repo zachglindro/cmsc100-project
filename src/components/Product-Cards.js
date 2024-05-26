@@ -77,7 +77,12 @@ function ProductCards() {
                             <p className='product-price'>${product.price}</p>
                             <p className='product-desc'>{product.description}</p>
                             <br />
-                            <center><button className='add-to-cart' onClick={(event) => handleAddToCart(event, product._id, userId)}><b> ADD TO CART </b></button></center>
+                            <center><button 
+                                className='add-to-cart' 
+                                onClick={(event) => handleAddToCart(event, product._id, userId)} 
+                                disabled={product.quantity === 0}>
+                                <b>{product.quantity === 0 ? 'OUT OF STOCK' : 'ADD TO CART'}</b>
+                            </button></center>
                         </li>
                     </div>
                 ))}

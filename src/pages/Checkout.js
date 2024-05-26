@@ -48,7 +48,7 @@ function Checkout() {
             <ul className='checkout-basket-list'>
               {cart.map(item => (
                 <li className='checkout-item' key={item._id}>
-                  <img src={"https://cosmosmagazine.com/wp-content/uploads/2021/04/GettyImages-1178796552-small.jpg"} alt={item.name} className="checkout-item-image" />
+                  <img src={item.img} alt={item.name} className="checkout-item-image" />
                   <div className='item-details-container'>
                     <p className='checkout-item-name'><b>{item.name}</b></p>
                     <p className='checkout-item-qty'>Quantity: {item.quantity}</p>

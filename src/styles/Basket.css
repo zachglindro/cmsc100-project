@@ -27,7 +27,7 @@
     border-color: #FF9800; */
     margin: 10px;
     margin-left: 25px;
-    height: 490px; /* Set maximum height for the container */
+    height: 550px; /* Set maximum height for the container */
     overflow-y: scroll; /* Add scrollbar for vertical overflow */
 }
 
@@ -57,10 +57,12 @@
 
 .basket-item {
     width: 280px;
-    border-bottom-style: solid;
+    height: 270px;
+    /* border-bottom-style: solid;
     border-bottom-width: 2px;
-    border-bottom-color: #FF9800;
-    /* border-radius: 10px; */
+    border-bottom-color: #FF9800; */
+    border-radius: 10px;
+    background: rgba(217, 217, 217, 0.2);
     margin-bottom: 5px;
     padding: 15px;
 }
@@ -90,8 +92,8 @@
     align-self: center;
     padding: 5px;
     margin-left: 0%;
-    margin-top: 10px;
-    transform: translateX(185px);
+    margin-top: 22px;
+    transform: translateX(178px);
 }
 
 .sub-total {
@@ -118,10 +120,15 @@
     margin-right: 25px;
 }
 
+.check-out-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 
 .basket-image{
-    height: min-content;
+    border-radius: 5px;
+    height: 100px;
     width: 150px;
-    height: 150px;
-    margin-top: 20px;
+    object-fit: cover;
   }
