@@ -1,0 +1,98 @@
+.accounts-body{
+    height: 550px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+.accounts-container {
+    background-image: url('../assets/welcome/field.jpg');
+    background-size: cover; /* Ensure the image covers the container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Ensure no margin is applied */
+    padding: 0; /* Ensure no padding is applied */
+}
+
+
+.account-cards-container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    overflow-y: auto; /* Add vertical scrollbar if content overflows */
+    box-sizing: border-box; /* Include padding and border in the width */
+    padding-top: 10px;
+}
+
+/* Custom scrollbar styles for Webkit browsers */
+.account-cards-container::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+.account-cards-container::-webkit-scrollbar-track {
+    background: rgba(217, 217, 217, 0.2); /* Track color with low opacity */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+.account-cards-container::-webkit-scrollbar-thumb {
+    background: rgba(217, 217, 217, 0.4); /* Thumb color with higher opacity */
+    border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.account-cards-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(217, 217, 217, 0.6); /* Darker color on hover */
+}
+
+/* Custom scrollbar styles for Firefox */
+.account-cards-container {
+    scrollbar-width: thin; /* Narrow scrollbar */
+    scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2); /* Thumb and track color */
+}
+
+.account-cards {
+    list-style-type: none;
+    /* padding-top: 30px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    padding-right: 50px; */
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 40px;
+
+    
+}
+
+.account-card{
+    display: inline;
+}
+
+.info{
+    padding-top: 5px;
+    margin-bottom: 0;
+    color: white;
+    font-size: 22px;
+    text-align: center; /* Center-align text */
+}
+
+.total-number-users{
+    color: white;
+    font-weight: 1000;
+    letter-spacing: 1px;
+    font-size: 50px;
+}
+
+.total-users-container{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+

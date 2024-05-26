@@ -1,16 +1,15 @@
-import React from 'react'
-import '../styles/Merchant.css'
+import React from 'react';
+import '../styles/Merchant.css';
+import ProductCards from '../components/Product-Cards-Admin';
 
-function AdminProducts() {
-  return (
-    <div className='merchant-container'>
-      <div class="floating-container">
-        <div class="welcome-greeting">
-          PRODUCTS
+function Products() {
+    return (
+        <div className='merchant-container'>
+            <div className="floating-container">
+                <ProductCards />
+            </div>
         </div>
-      </div>
-    </div>
-  )
+    );
 }
 
-export default AdminProducts
+export default Products;
