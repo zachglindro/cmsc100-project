@@ -3,16 +3,16 @@ import axios from 'axios';
 import '../styles/Admin-Sales.css'
 
 function AdminSales() {
-  const [confirmedOrders, setConfirmedOrders] = useState([]);
+  const [productSales, setProductSales] = useState([]);
 
   useEffect(() => {
-    fetchConfirmedOrders();
+    fetchProductSales();
   }, []);
 
-  const fetchConfirmedOrders = async () => {
+  const fetchProductSales = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/get-confirmed-orders');
-      setConfirmedOrders(res.data);
+      const res = await axios.get('http://localhost:3001/generate-sales-report-by-product');
+      setProductSales(res.data);
     } catch (error) {
       console.error('Error fetching orders:', error);
     }
@@ -34,15 +34,15 @@ function AdminSales() {
           </div>
           <div className='sales-summary-table'>
             <ul className='sales-summary'>
-                {confirmedOrders.map(transaction => (
-                  <li key={transaction._id} className='product-sales'>
+                {productSales.map(sales => (
+                  <li key={sales._id} className='product-sales'>
                     <div className='sales-details-div'>
-                      <p className='prod-id'><b>Product ID: <br/></b>{transaction._id}</p>
-                      <p className='prod-name'><b>Product Name: <br/></b>{transaction.productName ? transaction.productName : transaction._id}</p>
-                      <p className='prod-sales-qty'><b>Quantity Sold: </b>{transaction.orderQty}</p>
+                      <p className='prod-id'><b>Product ID: <br/></b>{sales._id}</p>
+                      <p className='prod-name'><b>Product Name: <br/></b>{sales.productName ? sales.productName : sales._id}</p>
+                      <p className='prod-sales-qty'><b>Quantity Sold: </b>{sales.soldQuantity}</p>
                     </div>
                     <div className='prod-sales-div'>
-                      <p className='prod-sales-total'>Total Income: <b>${transaction.amountToPay ? transaction.amountToPay.toFixed(2) : 'N/A'}</b></p>
+                      <p className='prod-sales-total'>Total Income: <b>${sales.totalIncome ? sales.totalIncome.toFixed(2) : 'N/A'}</b></p>
                     </div>
                   </li>
                 ))}

@@ -108,4 +108,4 @@ const generateSalesReportByDate = async (req,res) => {
   }
 }
 
-export { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder, generateSalesReportByProduct, generateSalesReportByDate };
+export { getOrders, getActiveOrders, getConfirmedOrders, getOrderByUserAndProduct, confirmOrder, generateSalesReportByProduct, generateSalesReportByDate };
