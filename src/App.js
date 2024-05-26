@@ -60,6 +60,7 @@ function App() {
             <Route path='/orders' element={<Orders />} />
             <Route path='/basket' element={<Basket />} />
             <Route path='/checkoutpage' element={<Checkout />} />
+            <Route path='*' element={<Navigate to="/customer" />} />
           </>
         )}
         {/* Render routes for merchants */}
@@ -70,6 +71,7 @@ function App() {
             <Route path='/admin-products' element={<AdminProducts />} />
             <Route path='/admin-orders' element={<AdminOrders />} />
             <Route path='/admin-sales' element={<AdminSales />} />
+            <Route path='*' element={<Navigate to="/merchant" />} />
           </>
         )}
         {/* Redirect to login if user is not signed in */}
