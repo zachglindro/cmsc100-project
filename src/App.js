@@ -1,4 +1,3 @@
-import { Routes, Route} from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
@@ -13,25 +12,48 @@ import AdminAccounts from './pages/Admin-Accounts.js';
 import AdminProducts from './pages/Admin-Products.js';
 import AdminOrders from './pages/Admin-Orders.js';
 import AdminSales from './pages/Admin-Sales.js';
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 function App() {
-  const token = localStorage.getItem('token');
-  const isUserSignedIn = !!token;
-  const decodedToken = token ? jwtDecode(token) : null;
-  const userType = decodedToken ? decodedToken.userType : null;
+  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [userType, setUserType] = useState();
+  const navigate = useNavigate();
 
-  console.log(token);
+  // Decode token to get user type
+  useEffect(() => {
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      setUserType(decodedToken.userType);
+    } else {
+      setUserType(null);
+    }
+  }, [token]);
+
+  // Handle login. Passed as props to Login component 
+  const handleLogin = (token) => {
+    localStorage.setItem('token', token);
+    setToken(token);
+    navigate('/');
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+    setUserType(null);
+    navigate('/');
+  };
 
   return (
     <div className='App'>
-      <Navbar />
+      <Navbar handleLogout={handleLogout} />
       <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Login handleLogin={handleLogin} />} />
+        <Route path='/login' element={<Login handleLogin={handleLogin} />} />
         <Route path='/signup' element={<SignUp />} />
         {/* Render routes for customers */}
-        {isUserSignedIn && userType === 'customer' && (
+        {token && userType === 'customer' && (
           <>
             <Route path='/customer' element={<Customer />} />
             <Route path='/products' element={<Products />} />
@@ -41,7 +63,7 @@ function App() {
           </>
         )}
         {/* Render routes for merchants */}
-        {isUserSignedIn && userType === 'merchant' && (
+        {token && userType === 'merchant' && (
           <>
             <Route path='/merchant' element={<Merchant />} />
             <Route path='/admin-accounts' element={<AdminAccounts />} />
@@ -51,7 +73,7 @@ function App() {
           </>
         )}
         {/* Redirect to login if user is not signed in */}
-        {!isUserSignedIn && <Route path='/login' element={<Login />} />}
+        {!token && <Route path='*' element={<Navigate to="/login" />} />}
       </Routes>      
     </div>
   );

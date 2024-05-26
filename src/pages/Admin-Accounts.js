@@ -1,13 +1,12 @@
 import React from 'react'
-import '../styles/Merchant.css'
+import '../styles/Account-Cards.css'
+import UserList from '../components/Account-Cards'
 
 function AdminAccounts() {
   return (
-    <div className='merchant-container'>
-      <div class="floating-container">
-        <div class="welcome-greeting">
-          ACCOUNTS
-        </div>
+    <div className='accounts-container'>
+      <div className="floating-container">
+          <UserList />    
       </div>
     </div>
   )

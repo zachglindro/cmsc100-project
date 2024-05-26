@@ -43,7 +43,6 @@ function ProductCards() {
                 userId: userId
             });
             
-            alert('Items successfully added to basket!');
             console.log(res.data.message); // Optional: Log success message
         } catch (error) {
             console.error('Error adding product to cart:', error);
@@ -67,17 +66,18 @@ function ProductCards() {
                         <option className='option' value="asc">Ascending</option>
                         <option className='option' value="desc">Descending</option>
                     </select>
-            </div>
+                </div>
             <ul className='product-cards'>
                 {products.map(product => (
                     <div className='product-card' key={product._id}>
                         <li>
                             <center><img src={product.img} alt={product.name} className="product-image" /></center>
                             <p className='product-name'><b><i>{product.name}</i></b></p>
+                        
+                            <center> <p className='product-type'><b><i>{product.type === 1 ? "Crop" : product.type === 2 ? "Poultry" : product.type}</i></b></p></center>
                             <p className='product-price'>${product.price}</p>
                             <p className='product-desc'>{product.description}</p>
-                            <br />
-                            <center><button className='add-to-cart' onClick={(event) => handleAddToCart(event, product._id, userId)}><b> ADD TO CART </b></button></center>
+                            <p className='product-qty'> Stock: {product.quantity} </p>
                         </li>
                     </div>
                 ))}
