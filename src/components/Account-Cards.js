@@ -14,7 +14,7 @@ function UserList() {
   const fetchUsers = async () => {
     try {
       const res = await axios.get('http://localhost:3001/register');
-      setUsers(res.data);
+      setUsers(res.data.users);
       setUserCount(res.data.count);
     } catch (error) {
       console.error('Error fetching users:', error);
