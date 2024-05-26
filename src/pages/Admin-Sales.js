@@ -5,25 +5,52 @@ import '../styles/Admin-Sales.css';
 function AdminSales() {
   const [productSales, setProductSales] = useState([]);
   const [totalSales, setTotalSales] = useState(0);
+  const [sortOption, setSortOption] = useState('overall');
 
   useEffect(() => {
     fetchProductSales();
-  }, []);
+  }, [sortOption]);
 
   const fetchProductSales = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/generate-sales-report-by-product');
+      const res = await axios.get(`http://localhost:3001/generate-sales-report-by-date?sortBy=${sortOption}`);
       const salesData = res.data;
-      setProductSales(salesData);
-      calculateTotalSales(salesData);
+      const formattedSalesData = formatSalesData(salesData);
+      setProductSales(formattedSalesData);
+      calculateTotalSales(formattedSalesData);
     } catch (error) {
       console.error('Error fetching orders:', error);
     }
   };
 
+  const formatSalesData = (salesData) => {
+    const formattedData = [];
+    for (const period in salesData) {
+      salesData[period].forEach(order => {
+        const existingProduct = formattedData.find(product => product._id === order.productId);
+        if (existingProduct) {
+          existingProduct.soldQuantity += order.orderQty;
+          existingProduct.totalIncome += order.amountToPay;
+        } else {
+          formattedData.push({
+            _id: order.productId,
+            name: order.productName,
+            soldQuantity: order.orderQty,
+            totalIncome: order.amountToPay
+          });
+        }
+      });
+    }
+    return formattedData;
+  };
+
   const calculateTotalSales = (salesData) => {
     const total = salesData.reduce((sum, sales) => sum + (sales.totalIncome || 0), 0);
     setTotalSales(total);
+  };
+
+  const handleSortChange = (event) => {
+    setSortOption(event.target.value);
   };
 
   return (
@@ -33,8 +60,8 @@ function AdminSales() {
           <div className='drop-down-container'>
             <p className='sales-heading'><b>SALES REPORT</b></p>
             <label className='sort-report' htmlFor="sort-attribute-menu"><b>SORT BY:</b></label>
-            <select id="sort-report-menu">
-              <option className='option' value="recent">Overall</option>
+            <select id="sort-report-menu" value={sortOption} onChange={handleSortChange}>
+              <option className='option' value="overall">Overall</option>
               <option className='option' value="weekly">Weekly</option>
               <option className='option' value="monthly">Monthly</option>
               <option className='option' value="annual">Annual</option>
