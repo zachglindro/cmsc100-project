@@ -6,8 +6,7 @@ function AdminAccounts() {
   return (
     <div className='accounts-container'>
       <div class="floating-container">
-            <UserList />
-            
+          <UserList />    
       </div>
     </div>
   )
