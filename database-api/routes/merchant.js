@@ -104,10 +104,12 @@ const generateSalesReportByDate = async (req,res) => {
         if (!acc[year]) {
           acc[year] = {
             date: year,
-            totalIncome: 0
+            totalIncome: 0,
+            productSummary: []
           }
         }
         acc[year].totalIncome += order.amountToPay
+        acc[year].productSummary.push(order.productName.concat(" x", order.orderQty))
         //acc[year].push(order)
         return acc;
       }, {})
@@ -120,10 +122,12 @@ const generateSalesReportByDate = async (req,res) => {
         if (!acc[yearMonth]) {
           acc[yearMonth] = {
             date: yearMonth,
-            totalIncome: 0
+            totalIncome: 0,
+            productSummary: []
           }
         }
         acc[yearMonth].totalIncome += order.amountToPay
+        acc[yearMonth].productSummary.push(order.productName.concat(" x", order.orderQty))
         //acc[yearMonth].push(order)
         return acc;
       }, {})
@@ -148,10 +152,12 @@ const generateSalesReportByDate = async (req,res) => {
         if (!acc[week]) {
           acc[week] = {
             date: week,
-            totalIncome: 0
+            totalIncome: 0,
+            productSummary: []
           }
         }
         acc[week].totalIncome += order.amountToPay
+        acc[week].productSummary.push(order.productName.concat(" x", order.orderQty))
         //acc[week].push(order)
         return acc;
       }, {})
