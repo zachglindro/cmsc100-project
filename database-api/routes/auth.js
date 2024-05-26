@@ -7,7 +7,8 @@ const SECRET_KEY = 'secretkey'
 const getUsers = async (req, res) => {
     try {
         const users = await User.find()
-        res.status(201).json(users)
+        const count = await User.countDocuments()
+        res.status(201).json({users, count})
     }
     catch (error) {
         res.status(500).json({ error: 'Unable to get users.'})

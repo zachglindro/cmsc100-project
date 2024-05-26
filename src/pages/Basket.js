@@ -51,6 +51,7 @@ function Basket() {
           {cart.map(item => (
             <li className='basket-item' key={item._id}>
               {/* <img src={item.img} alt={item.name} className="product-image" /> */}
+                            <center> <img src={item.imag} alt={item.name} className="basket-image" /> </center>
               <p className='item-name'><b>{item.name}</b></p>
               <p className='item-qty'>Quantity: {item.quantity}</p>
               <p className='item-amount'>Total Amount: <b>${item.price * item.quantity}</b></p>

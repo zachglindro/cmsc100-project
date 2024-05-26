@@ -117,3 +117,11 @@
     margin-left: 25px;
     margin-right: 25px;
 }
+
+
+.basket-image{
+    height: min-content;
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
+  }
