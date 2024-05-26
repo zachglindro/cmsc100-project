@@ -3,16 +3,16 @@ import axios from 'axios';
 import '../styles/Admin-Sales.css'
 
 function AdminSales() {
-  const [confirmedOrders, setConfirmedOrders] = useState([]);
+  const [productSales, setProductSales] = useState([]);
 
   useEffect(() => {
-    fetchConfirmedOrders();
+    fetchProductSales();
   }, []);
 
-  const fetchConfirmedOrders = async () => {
+  const fetchProductSales = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/get-confirmed-orders');
-      setConfirmedOrders(res.data);
+      const res = await axios.get('http://localhost:3001/generate-sales-report-by-product');
+      setProductSales(res.data);
     } catch (error) {
       console.error('Error fetching orders:', error);
     }
@@ -32,24 +32,23 @@ function AdminSales() {
                 <option className='option' value="annual">Annual</option>
               </select>
           </div>
-          <ul className='order-transactions-list'>
-              {confirmedOrders.map((transaction, index) => (
-                <li key={transaction._id} className='order-transaction-item'>
-                  <div className='trans-details-div'>
-                    <p className='trans-id'><b>Transaction ID: <br/></b>{transaction._id}</p>
-                    <p className='prod-name'><b>Product Name: <br/></b>{transaction.productName ? transaction.productName : transaction._id}</p>
-                    <p className='trans-date'><b>Date Ordered: </b>{new Date(transaction.dateOrdered).toLocaleDateString()}</p>
-                    <p className='trans-qty'><b>Quantity: </b>{transaction.orderQty}</p>
-                  </div>
-                  <div className='trans-stat-div'>
-                    <p className='trans-stat'>{transaction.orderStatus === 0 ? 'Pending' : transaction.orderStatus === 1 ? 'Shipped' : transaction.orderStatus === 2 ? 'Canceled' : 'Delivered'}</p>
-                  </div>
-                  <div className='trans-atp-div'>
-                    <p className='trans-atp'>${transaction.amountToPay ? transaction.amountToPay.toFixed(2) : 'N/A'}</p>
-                  </div>
-                </li>
-              ))}
+          <div className='sales-summary-table'>
+            <ul className='sales-summary'>
+                {productSales.map(sales => (
+                  <li key={sales._id} className='product-sales'>
+                    <div className='sales-details-div'>
+                      <p className='prod-id'><b>Product ID: <br/></b>{sales.productId}</p>
+                      <p className='prod-name'><b>Product Name: <br/></b>{sales.productName ? sales.productName : sales.productId}</p>
+                      <p className='prod-sales-qty'><b>Quantity Sold: </b>{sales.soldQuantity}</p>
+                    </div>
+                    <div className='prod-sales-div'>
+                      <p className='prod-sales-total'>Total Income: <b>${sales.totalIncome ? sales.totalIncome.toFixed(2) : 'N/A'}</b></p>
+                    </div>
+                  </li>
+                ))}
             </ul>
+          </div>
+          <p className='total-sales'>Total Sales: <b>$100,000.00</b></p>
         </div>              
       </div>
     </div>

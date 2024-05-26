@@ -50,8 +50,7 @@ function Basket() {
         <ul className='basket-list'>
           {cart.map(item => (
             <li className='basket-item' key={item._id}>
-              {/* <img src={item.img} alt={item.name} className="product-image" /> */}
-                            <center> <img src={item.imag} alt={item.name} className="basket-image" /> </center>
+              <img src={item.img} alt={item.name} className="basket-image" />
               <p className='item-name'><b>{item.name}</b></p>
               <p className='item-qty'>Quantity: {item.quantity}</p>
               <p className='item-amount'>Total Amount: <b>${item.price * item.quantity}</b></p>
@@ -61,7 +60,7 @@ function Basket() {
         </ul>
       </div>
       <p className='sub-total'>Subtotal: <b>${subtotal.toFixed(2)}</b></p>
-      <button className='check-out-btn' onClick={handleCheckout}><b> PROCEED TO CHECK OUT </b></button>
+      <button className='check-out-btn' onClick={handleCheckout} disabled={totalItemsInCart === 0}><b> PROCEED TO CHECK OUT </b></button>
     </div>
   );
 }

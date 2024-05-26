@@ -139,7 +139,7 @@
 }
 
 .add-to-cart {
-    width: 180px;
+    width: 230px;
     height: 50px;
     background: #FF9800;
     border-style: none; 
@@ -152,4 +152,9 @@
     cursor: pointer;
     margin-top: 10px;
     transform: translateY(-20px);
+}
+
+.add-to-cart[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
