@@ -3,8 +3,9 @@ import { register, login, getUsers, getUserByUsername } from './routes/auth.js';
 import { addToCart, removeFromCart, getProducts, getProductsSorted, getProductByName, getCart, checkOut, getUserOrderTransactions, cancelOrder } from './routes/shop.js';
 import { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder, getConfirmedOrders } from './routes/merchant.js';
 import { getCheckoutCart } from './routes/checkout.js';
+import { connectionString } from './secrets.js';
 
-await mongoose.connect('mongodb+srv://achillesheel0525:jokelangyungpassw0rd@fortesting.q8ml0qz.mongodb.net/farmToTable');
+await mongoose.connect(connectionString);
 
 export default function router(app) {
  	// Allow Cross Origin Resource Sharing
