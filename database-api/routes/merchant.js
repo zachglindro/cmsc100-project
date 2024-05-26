@@ -96,60 +96,68 @@ const generateSalesReportByDate = async (req,res) => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const sortBy = req.query.sortBy
 
-    console.log(sortBy)
-
-    const salesReportYearly = orders.reduce((acc, order) => {
-      const year = order.dateOrdered.getFullYear();
-      if (!acc[year]) {
-        acc[year] = []
-      }
-      acc[year].push(order)
-      return acc;
-    }, {})
-
-    const salesReportMonthly = orders.reduce((acc, order) => {
-      const year = order.dateOrdered.getFullYear();
-      const month = months[order.dateOrdered.getMonth()];
-      const yearMonth = month.concat(" ", year)
-
-      if (!acc[yearMonth]) {
-        acc[yearMonth] = []
-      }
-      acc[yearMonth].push(order)
-      return acc;
-    }, {})
-
-    const salesReportWeekly = orders.reduce((acc, order) => {
-      const year = order.dateOrdered.getFullYear();
-      var monthStart = months[order.dateOrdered.getMonth()];
-      var monthEnd = monthStart
-      var weekStart = order.dateOrdered.getDate() - order.dateOrdered.getDay();
-      var weekEnd = weekStart + 7;
-      if(weekEnd > 31){
-        monthEnd = months[order.dateOrdered.getMonth()+1]
-        weekEnd = weekEnd - 31
-      }
-      if(weekEnd < 1){
-        monthStart = months[order.dateOrdered.getMonth()-1]
-        weekEnd = weekStart + 31
-      }
-
-      const week = monthStart.concat(" ", weekStart, "-", monthEnd, " ", weekEnd, " ", year)
-
-      if (!acc[week]) {
-        acc[week] = []
-      }
-      acc[week].push(order)
-      return acc;
-    }, {})
+    var salesReport = {}
 
     if(sortBy == 'year'){
-      res.status(201).json(salesReportYearly);
+      salesReport = orders.reduce((acc, order) => {
+        const year = order.dateOrdered.getFullYear();
+        if (!acc[year]) {
+          acc[year] = {
+            date: year,
+            totalIncome: 0
+          }
+        }
+        acc[year].totalIncome += order.amountToPay
+        //acc[year].push(order)
+        return acc;
+      }, {})
     } else if(sortBy == 'month'){
-      res.status(201).json(salesReportMonthly);
-    } else if(sortBy == 'week'){
-      res.status(201).json(salesReportWeekly);
+      salesReport = orders.reduce((acc, order) => {
+        const year = order.dateOrdered.getFullYear();
+        const month = months[order.dateOrdered.getMonth()];
+        const yearMonth = month.concat(" ", year)
+
+        if (!acc[yearMonth]) {
+          acc[yearMonth] = {
+            date: yearMonth,
+            totalIncome: 0
+          }
+        }
+        acc[yearMonth].totalIncome += order.amountToPay
+        //acc[yearMonth].push(order)
+        return acc;
+      }, {})
+    } else if(sortBy == 'week') {
+      salesReport = orders.reduce((acc, order) => {
+        const year = order.dateOrdered.getFullYear();
+        var monthStart = months[order.dateOrdered.getMonth()];
+        var monthEnd = monthStart
+        var weekStart = order.dateOrdered.getDate() - order.dateOrdered.getDay();
+        var weekEnd = weekStart + 7;
+        if(weekEnd > 31){
+          monthEnd = months[order.dateOrdered.getMonth()+1]
+          weekEnd = weekEnd - 31
+        }
+        if(weekEnd < 1){
+          monthStart = months[order.dateOrdered.getMonth()-1]
+          weekEnd = weekStart + 31
+        }
+
+        const week = monthStart.concat(" ", weekStart, "-", monthEnd, " ", weekEnd, " ", year)
+
+        if (!acc[week]) {
+          acc[week] = {
+            date: week,
+            totalIncome: 0
+          }
+        }
+        acc[week].totalIncome += order.amountToPay
+        //acc[week].push(order)
+        return acc;
+      }, {})
     }
+
+    res.status(201).json(Object.values(salesReport));
   } catch (error) {
     res.status(500).json({ error: "Unable to get orders." });
     console.log(error)
