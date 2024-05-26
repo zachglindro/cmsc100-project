@@ -1,48 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import "../styles/Login.css"
 import logo from '../assets/welcome/logo.png'
 
 
-function Login() {
-    // const [users, setUsers] = useState([])
+function Login({handleLogin}) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchUsers();
-      }, [])
-    
-      const fetchUsers = () => {
-        axios
-        .get('http://localhost:3001/register')
-        .then((res) => {
-          console.log(res.data)
-        })
-      }    
-
-      const handleLogin = async (event) => {
+      const handleLoginSubmit = async (event) => {
         event.preventDefault();
         try {
             const response = await axios.post('http://localhost:3001/login', { username, password })
-            const { message, userType } = response.data
-            const token = response.data.token
+            const { message, token, userType } = response.data
     
             alert(message)
             setUsername('')
             setPassword('')
-            fetchUsers();
+            handleLogin(token);
     
             if (userType === 'merchant') {
                 navigate('/merchant')
             } else {
                 navigate('/customer')
             }
-    
-            window.location.reload();
-            localStorage.setItem('token', token)
         } catch (error) {
             console.error('Login Error:', error)
             alert('Login Error!')
@@ -54,7 +37,7 @@ function Login() {
             <div className='log-in-form-container'>
 
                 <img className="logo" src={logo} alt="Logo" />
-                <form className='log-in-form' onSubmit={handleLogin}>
+                <form className='log-in-form' onSubmit={handleLoginSubmit}>
 
                 <br />
                 <p className="log-in"><b><center>LOGIN</center></b></p>
