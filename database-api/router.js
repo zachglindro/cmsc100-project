@@ -35,7 +35,6 @@ export default function router(app) {
   
   app.get('/get-orders', getOrders)
   app.get('/get-active-orders', getActiveOrders)
-  app.get('/get-confirmed-orders', getConfirmedOrders)
   app.get('/get-order-by-user-product', getOrderByUserAndProduct)
   app.get('/confirm-order', confirmOrder)
   app.get('/generate-sales-report-by-product', generateSalesReportByProduct)
