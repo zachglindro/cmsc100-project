@@ -80,7 +80,7 @@ const generateSalesReportByProduct = async (req,res) => {
       }
     }
 
-    res.status(201).json(salesReport);
+    res.status(201).json(Object.entries(salesReport));
   } catch (error) {
     res.status(500).json({ error: "Unable to get orders." });
     console.log(error)

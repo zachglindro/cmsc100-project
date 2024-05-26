@@ -37,8 +37,8 @@ function AdminSales() {
                 {productSales.map(sales => (
                   <li key={sales._id} className='product-sales'>
                     <div className='sales-details-div'>
-                      <p className='prod-id'><b>Product ID: <br/></b>{sales._id}</p>
-                      <p className='prod-name'><b>Product Name: <br/></b>{sales.productName ? sales.productName : sales._id}</p>
+                      <p className='prod-id'><b>Product ID: <br/></b>{sales.productId}</p>
+                      <p className='prod-name'><b>Product Name: <br/></b>{sales.productName ? sales.productName : sales.productId}</p>
                       <p className='prod-sales-qty'><b>Quantity Sold: </b>{sales.soldQuantity}</p>
                     </div>
                     <div className='prod-sales-div'>
