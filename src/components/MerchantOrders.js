@@ -34,10 +34,12 @@ function OrderList() {
 
   const confirmOrder = async (transactionId) => {
     try {
-      const res = await axios.put(`http://localhost:3001/confirm-order?transactionId=${transactionId}`);
+      const res = await axios.get(`http://localhost:3001/confirm-order?transactionId=${transactionId}`);
+      alert('Order confirmed!');
       console.log(res.data.message); // Optional: Log success message
       fetchOrders(); // Refresh the orders after confirming the order
     } catch (error) {
+      alert('Error confirming order!');
       console.error('Error confirming order:', error);
     }
   };
@@ -56,16 +58,9 @@ function OrderList() {
                 <p className='info'><b>Email:</b> {order.email}</p>
                 <p className='info'><b>Date Ordered:</b> {new Date(order.dateOrdered).toLocaleDateString()}</p>
                 <br />
-                {(order.orderStatus === 0) && (
                 <center>
-                  <button className='confirm-button' onClick={() => confirmOrder(order._id)}>CONFIRM</button>
+                  <button className='confirm-button' onClick={() => confirmOrder(order._id)} disabled={order.orderStatus === 1 || order.orderStatus === 2}>CONFIRM</button>
                 </center>  
-                )}
-                {/* {(order.orderStatus === 1 || order.orderStatus === 2) && (
-                <center>
-                  <p className='uwu'> DONE </p>
-                </center>  
-                )} */}
               </li>
             </div>
           ))}

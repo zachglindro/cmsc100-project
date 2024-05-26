@@ -6,7 +6,7 @@ import OrderList from '../components/MerchantOrders.js'
 function AdminOrders() {
   return (
     <div className='merchant-container'>
-      <div class="floating-container">
+      <div className="floating-container">
         <OrderList />
       </div>
     </div>

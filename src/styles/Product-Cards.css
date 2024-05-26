@@ -134,6 +134,8 @@
     margin-top: 10px;
     font-size: 15px;
     text-align: center; /* Center-align text */
+    overflow: auto;
+    height: 50px;
 }
 
 .add-to-cart {

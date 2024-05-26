@@ -5,7 +5,7 @@ import UserList from '../components/Account-Cards'
 function AdminAccounts() {
   return (
     <div className='accounts-container'>
-      <div class="floating-container">
+      <div className="floating-container">
           <UserList />    
       </div>
     </div>
