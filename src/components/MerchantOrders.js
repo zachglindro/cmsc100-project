@@ -61,6 +61,11 @@ function OrderList() {
                   <button className='confirm-button' onClick={() => confirmOrder(order._id)}>CONFIRM</button>
                 </center>  
                 )}
+                {/* {(order.orderStatus === 1 || order.orderStatus === 2) && (
+                <center>
+                  <p className='uwu'> DONE </p>
+                </center>  
+                )} */}
               </li>
             </div>
           ))}

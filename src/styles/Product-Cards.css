@@ -4,35 +4,33 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    overflow-y: auto; /* Add vertical scrollbar if content overflows */
+    overflow: auto; /* Add vertical scrollbar if content overflows */
     box-sizing: border-box; /* Include padding and border in the width */
     padding-top: 30px;
 }
 
-/* Custom scrollbar styles for Webkit browsers */
-.product-cards-container::-webkit-scrollbar {
-    width: 12px; /* Width of the scrollbar */
-}
 
-.product-cards-container::-webkit-scrollbar-track {
-    background: rgba(217, 217, 217, 0.2); /* Track color with low opacity */
-    border-radius: 10px; /* Rounded corners for the track */
-}
+::-webkit-scrollbar-thumb {
+    /* background: red;  */
+    border-radius: 10px;
+  }
 
-.product-cards-container::-webkit-scrollbar-thumb {
-    background: rgba(217, 217, 217, 0.4); /* Thumb color with higher opacity */
-    border-radius: 10px; /* Rounded corners for the thumb */
-}
+  /* width */
+::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FF9800;
+  }
 
-.product-cards-container::-webkit-scrollbar-thumb:hover {
-    background: rgba(217, 217, 217, 0.6); /* Darker color on hover */
-}
-
-/* Custom scrollbar styles for Firefox */
-.product-cards-container {
-    scrollbar-width: thin; /* Narrow scrollbar */
-    scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2); /* Thumb and track color */
-}
 
 .products-heading {
     color: white;
