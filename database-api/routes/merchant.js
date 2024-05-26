@@ -55,4 +55,57 @@ const confirmOrder = async (req,res) => {
   }
 }
 
-export { getOrders, getActiveOrders, getConfirmedOrders, getOrderByUserAndProduct, confirmOrder };
+// returns a list of products with additional fields for soldQuantity and totalIncome
+const generateSalesReportByProduct = async (req,res) => {
+  try {
+    const orders = await OrderTransaction.find({orderStatus: '1'})
+    
+    const salesReport = {}
+
+    for (const order of orders) {
+      const productId = order.productId
+      const product = await Product.findOne({ _id: productId })
+
+      if (product) {
+        if (!salesReport[productId]) {
+          salesReport[productId] = {
+            ...product.toObject(),
+            soldQuantity: 0,
+            totalIncome: 0
+          };
+        }
+
+        salesReport[productId].soldQuantity += order.orderQty
+        salesReport[productId].totalIncome += order.amountToPay
+      }
+    }
+
+    res.status(201).json(salesReport);
+  } catch (error) {
+    res.status(500).json({ error: "Unable to get orders." });
+    console.log(error)
+  }
+}
+
+// input weekly, monthly or annual in query
+// return a list of completed order transactions separated by week, month or year
+const generateSalesReportByDate = async (req,res) => {
+  try {
+    const orders = await OrderTransaction.find({orderStatus: '1'});
+    
+    const salesReport = orders.reduce((acc, order) => {
+      const year = order.dateOrdered.getFullYear();
+      if (!acc[year]) {
+        acc[year] = []
+      }
+      acc[year].push(order)
+      return acc;
+    }, {})
+
+    res.status(201).json(salesReport);
+  } catch (error) {
+    res.status(500).json({ error: "Unable to get orders." });
+  }
+}
+
+export { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder, generateSalesReportByProduct, generateSalesReportByDate };
