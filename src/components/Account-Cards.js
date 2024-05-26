@@ -14,7 +14,7 @@ function UserList() {
   const fetchUsers = async () => {
     try {
       const res = await axios.get('http://localhost:3001/register');
-      setUsers(res.data);
+      setUsers(res.data.users);
       setUserCount(res.data.count);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -41,8 +41,8 @@ function UserList() {
     </div>
           <div className='total-users-container'>
             <p className='total-number-users'> TOTAL NUMBER OF </p>
-            <p className='total-number-users'> USERS </p>
-            <p className='total-number-users'> s {userCount} </p>
+            <p className='total-number-users'> USERS: </p>
+            <p className='total-number-users'> {userCount} </p>
       </div>
     </div>
   );
