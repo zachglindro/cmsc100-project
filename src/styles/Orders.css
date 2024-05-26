@@ -43,53 +43,25 @@
     border-top-right-radius: 25px;
     justify-content: space-between;
     align-items: center;
+    justify-content: center;
     padding: 0 15px;
     margin: 0 auto;
 }
 
 .transactions-tabler-header-list {
-    /* width: 100%; */
     list-style: none;
     display: flex;
-    /* justify-content: space-between; */
     color: white;
-    padding: 0;
-    gap: 100px;
-}
-
-.trans-id-heading {
-    transform: translateX(17px);
-    text-align: center;
-}
-
-.prod-name-heading {
-    transform: translateX(50px);
-    text-align: center;
-}
-
-.trans-qty-heading {
-    transform: translateX(75px);
+    padding: 10px;
     text-align: center;
 }
 
 .trans-stat-heading {
-    transform: translateX(22px);
-    text-align: center;
-}
-
-.trans-date-heading {
-    transform: translateX(35px);
-    text-align: center;
+    transform: translateX(105px);
 }
 
 .trans-atp-heading {
-    transform: translateX(85px);
-    text-align: center;
-}
-
-.transactions-tabler-header-list li {
-    flex: 1;
-    text-align: center;
+    transform: translateX(272px);
 }
 
 .transactions-table {
@@ -107,28 +79,27 @@
 }
 
 .transactions-table::-webkit-scrollbar {
-    width: 12px; /* Width of the scrollbar */
+    width: 12px;
     border-radius: 45px;
 }
 
 .transactions-table::-webkit-scrollbar-track {
-    background: rgba(217, 217, 217, 0.2); /* Track color with low opacity */
-    border-radius: 10px; /* Rounded corners for the track */
+    background: rgba(217, 217, 217, 0.2);
+    border-radius: 10px;
 }
 
 .transactions-table::-webkit-scrollbar-thumb {
-    background: rgba(217, 217, 217, 0.4); /* Thumb color with higher opacity */
-    border-radius: 10px; /* Rounded corners for the thumb */
+    background: rgba(217, 217, 217, 0.4);
+    border-radius: 10px;
 }
 
 .transactions-table::-webkit-scrollbar-thumb:hover {
-    background: rgba(217, 217, 217, 0.6); /* Darker color on hover */
+    background: rgba(217, 217, 217, 0.6);
 }
 
-/* Custom scrollbar styles for Firefox */
 .transactions-table {
-    scrollbar-width: thin; /* Narrow scrollbar */
-    scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2); /* Thumb and track color */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2);
 }
 
 .transaction-details-container {
@@ -151,41 +122,27 @@
     margin-bottom: 5px;
     color: white;
     border-radius: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .order-transaction-item p {
     margin: 0;
+    text-align: center;
 }
 
-.trans-id {
-    width: 150px;
-    text-align: center;
+.trans-details-div {
+    width: 40%;
+}
+
+.trans-id, .prod-name, .trans-date, .trans-qty {
+    text-align: left !important;
 }
 
 .prod-name {
-    width: 200px;
-    text-align: center;
-}
-
-.trans-qty {
-    width: 100px;
-    transform: translateX(25px);
-    text-align: center;
-}
-
-.trans-stat {
-    width: 100px;
-    text-align: center;
-}
-
-.trans-date {
-    width: 150px;
-    text-align: center;
-}
-
-.trans-atp {
-    width: 150px;
-    text-align: center;
+    padding-bottom: 10px;
 }
 
 .cancel-btn {
@@ -198,4 +155,9 @@
     font-size: 15px;
     cursor: pointer;
     text-align: center;
+}
+
+.cancel-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

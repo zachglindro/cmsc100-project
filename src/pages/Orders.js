@@ -23,12 +23,15 @@ function Orders() {
     fetchOrderTransactions();
   }, [userId]);
 
-  const handleCancelOrder = async (transactionId) => {
+  const handleCancelOrder = async (transactionId, index) => {
     try {
       await axios.get(`http://localhost:3001/cancel-order?transactionId=${transactionId}`);
-      setOrderTransactions(orderTransactions.map(transaction =>
-        transaction._id === transactionId ? { ...transaction, orderStatus: 2 } : transaction
-      ));
+      setOrderTransactions(prevTransactions => {
+        const updatedTransactions = [...prevTransactions];
+        updatedTransactions[index].orderStatus = 2; // Marking as cancelled
+        return updatedTransactions;
+      });
+      alert('Are you sure you want to cancel this order?');
     } catch (error) {
       console.error('Error cancelling order:', error);
       alert('Failed to cancel the order. Please try again.');
@@ -41,26 +44,40 @@ function Orders() {
         <p className='order-transactions-heading'><b>ORDER TRANSACTIONS</b></p>
         <div className='transactions-table-header'>
           <ul className='transactions-tabler-header-list'>
-            <li className='trans-id-heading'><b>TRANSACTION</b></li>
-            <li className='prod-name-heading'><b>PRODUCT</b></li>
-            <li className='trans-qty-heading'><b>QUANTITY</b></li>
-            <li className='trans-stat-heading'><b>STATUS</b></li>
-            <li className='trans-date-heading'><b>DATE</b></li>
-            <li className='trans-atp-heading'><b>TOTAL</b></li>
+            <div className='trans-details-heading'>
+              
+            </div>
+            <div className='trans-stat-heading'>
+              <li><b>STATUS</b></li>
+            </div>
+            <div className='trans-atp-heading'>
+              <li><b>AMOUNT</b></li>
+            </div>
+            <div className='cancel-heading'>
+              
+            </div>
           </ul>
         </div>
         <div className='transactions-table'>
           <div className='transaction-details-container'>
             <ul className='order-transactions-list'>
-              {orderTransactions.map(transaction => (
+              {orderTransactions.map((transaction, index) => (
                 <li key={transaction._id} className='order-transaction-item'>
-                  <p className='trans-id'>{transaction._id.slice(0, 6)}...{transaction._id.slice(-4)}</p>
-                  <p className='prod-name'>{transaction.productName ? transaction.productName : transaction._id}</p>
-                  <p className='trans-qty'>{transaction.orderQty}</p>
-                  <p className='trans-stat'>{transaction.orderStatus === 0 ? 'Pending' : transaction.orderStatus === 1 ? 'Shipped' : transaction.orderStatus === 2 ? 'Canceled' : 'Delivered'}</p>
-                  <p className='trans-date'>{new Date(transaction.dateOrdered).toLocaleDateString()}</p>
-                  <p className='amt-atp'>${transaction.amountToPay ? transaction.amountToPay.toFixed(2) : 'N/A'}</p>
-                  <button className='cancel-btn' onClick={() => handleCancelOrder(transaction._id)}><b> CANCEL </b></button>
+                  <div className='trans-details-div'>
+                    <p className='trans-id'><b>Transaction ID: <br/></b>{transaction._id}</p>
+                    <p className='prod-name'><b>Product Name: <br/></b>{transaction.productName ? transaction.productName : transaction._id}</p>
+                    <p className='trans-date'><b>Date Ordered: </b>{new Date(transaction.dateOrdered).toLocaleDateString()}</p>
+                    <p className='trans-qty'><b>Quantity: </b>{transaction.orderQty}</p>
+                  </div>
+                  <div className='trans-stat-div'>
+                    <p className='trans-stat'>{transaction.orderStatus === 0 ? 'Pending' : transaction.orderStatus === 1 ? 'Shipped' : transaction.orderStatus === 2 ? 'Cancelled' : 'Delivered'}</p>
+                  </div>
+                  <div className='trans-atp-div'>
+                    <p className='trans-atp'>${transaction.amountToPay ? transaction.amountToPay.toFixed(2) : 'N/A'}</p>
+                  </div>
+                  <div className='trans-cancel-div'>
+                    <button className='cancel-btn' onClick={() => handleCancelOrder(transaction._id, index)} disabled={transaction.orderStatus === 1 || transaction.orderStatus === 2}><b> CANCEL </b></button>
+                  </div>
                 </li>
               ))}
             </ul>
