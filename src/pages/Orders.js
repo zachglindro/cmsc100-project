@@ -70,7 +70,7 @@ function Orders() {
                     <p className='trans-qty'><b>Quantity: </b>{transaction.orderQty}</p>
                   </div>
                   <div className='trans-stat-div'>
-                    <p className='trans-stat'>{transaction.orderStatus === 0 ? 'Pending' : transaction.orderStatus === 1 ? 'Shipped' : transaction.orderStatus === 2 ? 'Cancelled' : 'Delivered'}</p>
+                    <p className='trans-stat'>{transaction.orderStatus === 0 ? 'Pending' : transaction.orderStatus === 1 ? 'Shipped' : transaction.orderStatus === 2 ? 'Canceled' : 'Delivered'}</p>
                   </div>
                   <div className='trans-atp-div'>
                     <p className='trans-atp'>${transaction.amountToPay ? transaction.amountToPay.toFixed(2) : 'N/A'}</p>

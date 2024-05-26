@@ -67,7 +67,7 @@ function ProductCards() {
                         <option className='option' value="asc">Ascending</option>
                         <option className='option' value="desc">Descending</option>
                     </select>
-                </div>
+            </div>
             <ul className='product-cards'>
                 {products.map(product => (
                     <div className='product-card' key={product._id}>

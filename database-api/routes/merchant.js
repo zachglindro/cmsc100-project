@@ -19,6 +19,15 @@ const getActiveOrders = async (req, res) => {
   }
 }; 
 
+const getConfirmedOrders = async (req, res) => {
+  try {
+    const orders = await OrderTransaction.find({orderStatus: '1'});
+    res.status(201).json(orders);
+  } catch (error) {
+    res.status(500).json({ error: "Unable to get orders." });
+  }
+}; 
+
 const getOrderByUserAndProduct = async (req,res) => {
   try{
     const orderTransaction = await OrderTransaction.findOne({userId: req.query.userId, productId: req.query.productId})
@@ -46,4 +55,4 @@ const confirmOrder = async (req,res) => {
   }
 }
 
-export { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder };
+export { getOrders, getActiveOrders, getConfirmedOrders, getOrderByUserAndProduct, confirmOrder };
