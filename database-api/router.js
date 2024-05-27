@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import { register, login, getUsers, getUserByUsername } from './routes/auth.js';
 import { addToCart, removeFromCart, getProducts, getProductsSorted, getProductByName, getCart, checkOut, getUserOrderTransactions, cancelOrder } from './routes/shop.js';
 import { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder, getConfirmedOrders, generateSalesReportByProduct, generateSalesReportByDate } from './routes/merchant.js';
-import { getCheckoutCart } from './routes/checkout.js';
 import { connectionString } from './secrets.js';
 
 await mongoose.connect(connectionString);
@@ -32,7 +31,6 @@ export default function router(app) {
   app.get('/checkout', checkOut)
   app.get('/cancel-order', cancelOrder)
   app.get('/get-user-orders', getUserOrderTransactions)
-  app.get('/get-checkout-cart', getCheckoutCart)
   
   app.get('/get-orders', getOrders)
   app.get('/get-active-orders', getActiveOrders)
