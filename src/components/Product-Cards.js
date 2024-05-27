@@ -71,12 +71,16 @@ function ProductCards() {
                 {products.map(product => (
                     <div className='product-card' key={product._id}>
                         <li>
+                            <div>
                             <center><img src={product.img} alt={product.name} className="product-image" /></center>
                             <p className='product-name'><b><i>{product.name}</i></b></p>
                             <p className='product-price'>${product.price}</p>
                             <p className='product-desc'>{product.description}</p>
+                            </div>
                             <br />
+                            <div className='button'> 
                             <center><button className='add-to-cart' onClick={(event) => handleAddToCart(event, product._id, userId)}><b> ADD TO CART </b></button></center>
+                            </div>
                         </li>
                     </div>
                 ))}

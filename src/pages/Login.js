@@ -67,7 +67,7 @@ function Login() {
 
                 <div className="loginandsignup"> 
                 <button className='log-in-button' type='submit'> Login </button>
-                <br />
+
                 <div className="sign-up-link"> 
 
                 <p> No account yet? <a href='http://localhost:3000/signup'> Sign Up </a></p>
