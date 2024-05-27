@@ -9,22 +9,25 @@ function AdminSales() {
   const [sortOption, setSortOption] = useState('year'); // Default sorting option
 
   useEffect(() => {
+    const fetchProductSales = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:3001/generate-sales-report-by-product"
+        );
+        const salesData = res.data;
+        setProductSales(salesData);
+        calculateTotalSales(salesData);
+      } catch (error) {
+        console.error("Error fetching product sales:", error);
+      }
+    };
+
     fetchProductSales();
-    fetchSalesReport();
-  }, []);
+    fetchSalesReport(sortOption);
+  }, [sortOption]);
 
-  const fetchProductSales = async () => {
-    try {
-      const res = await axios.get('http://localhost:3001/generate-sales-report-by-product');
-      const salesData = res.data;
-      setProductSales(salesData);
-      calculateTotalSales(salesData);
-    } catch (error) {
-      console.error('Error fetching product sales:', error);
-    }
-  };
 
-  const fetchSalesReport = async () => {
+  const fetchSalesReport = async (sortOption) => {
     try {
       const res = await axios.get(`http://localhost:3001/generate-sales-report-by-date?sortBy=${sortOption}`);
       const reportData = res.data;
@@ -41,7 +44,7 @@ function AdminSales() {
 
   const handleSortChange = (event) => {
     setSortOption(event.target.value); 
-    fetchSalesReport();
+    fetchSalesReport(event.target.value);
   };
   
 
