@@ -73,11 +73,19 @@
 .account-card{
     width: 100%;
     display: inline;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+    border-bottom-style: solid;
+    border-top: 2px;
+    border-left: 2px;
+    border-color: white;
+    padding-bottom: 40px;
 }
 
 .info{
-    padding-top: 5px;
-    margin-bottom: 0;
+    padding-top: 10px;
+    margin-bottom: 10px;
     color: white;
     font-size: 22px;
     text-align: center; /* Center-align text */
