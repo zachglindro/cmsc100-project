@@ -53,7 +53,8 @@ function OrderList() {
             {orders.map(order => (
               <div className='order-card' key={order._id}>
                 <li>
-                  <p className='info'><b>Product ID:</b> {order.productId}</p>
+                  <p className='info'><b>Transaction ID:</b> {order._id}</p>
+                  <p className='info'><b>Product Name:</b> {order.productName}</p>
                   <p className='info'><b>User ID:</b> {order.userId}</p>
                   <p className='info'><b>Order Quantity:</b> {order.orderQty}</p>
                   <p className='info'><b>Order Status:</b> {getOrderStatus(order.orderStatus)}</p>
