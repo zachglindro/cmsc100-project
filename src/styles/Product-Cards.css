@@ -130,6 +130,41 @@
     text-align: center; /* Center-align text */
 }
 
+.product-qty {
+    margin-top: 15px;
+    font-size: 20px;
+    text-align: center; /* Center-align text */
+    margin-left: 10px;
+}
+
+.stock-div {
+    display: flex;
+}
+
+.inc-btn {
+    width: 30px;
+    height: 30px;
+    /* border-radius: 5px; */
+    border-style: none;
+    background: none;
+    color: #FF9800;
+    font-size: 40px;
+    margin-left: 115px;
+    padding: 0;
+}
+
+.dec-btn {
+    width: 30px;
+    height: 30px;
+    /* border-radius: 5px; */
+    border-style: none;
+    background: none;
+    color: #FF9800;
+    font-size: 40px;
+    margin-left: 20px;
+    padding: 0;
+}
+
 .product-desc {
     margin-top: 10px;
     font-size: 15px;

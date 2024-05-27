@@ -77,7 +77,11 @@ function ProductCards() {
                             <center> <p className='product-type'><b><i>{product.type === 1 ? "Crop" : product.type === 2 ? "Poultry" : product.type}</i></b></p></center>
                             <p className='product-price'>${product.price}</p>
                             <p className='product-desc'>{product.description}</p>
-                            <p className='product-qty'> Stock: {product.quantity} </p>
+                            <div className='stock-div'>
+                                <p className='product-qty'> Stock: {product.quantity} </p>
+                                <button className='inc-btn'><b> + </b></button>
+                                <button className='dec-btn'><b> - </b></button>
+                            </div>
                         </li>
                     </div>
                 ))}
