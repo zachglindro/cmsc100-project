@@ -1,12 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
 import '../styles/Product-Cards.css';
 
 function ProductCards() {
-    const token = localStorage.getItem('token');
-    const decodedToken = token ? jwtDecode(token) : null;
-    const userId = decodedToken ? decodedToken.userId : null;
 
     const [products, setProducts] = useState([]);
 
@@ -34,19 +30,32 @@ function ProductCards() {
         fetchProducts();
     }, [fetchProducts]);
 
-    const handleAddToCart = async (event, productId, userId) => {
-        event.preventDefault();
+    const handleIncrement = async (event, productId) => {
+      event.preventDefault();
 
-        try {
-            const res = await axios.post('http://localhost:3001/add-to-cart', {
-                productId: productId,
-                userId: userId
-            });
-            
-            console.log(res.data.message); // Optional: Log success message
-        } catch (error) {
-            console.error('Error adding product to cart:', error);
-        }
+      try {
+        await axios.put("http://localhost:3001/increment-stock", {
+          productId: productId,
+        });
+
+        fetchProducts();
+      } catch (error) {
+        console.error("Error incrementing product stock:", error);
+      }
+    };
+
+    const handleDecrement = async (event, productId) => {
+      event.preventDefault();
+
+      try {
+        await axios.put("http://localhost:3001/decrement-stock", {
+          productId: productId,
+        });
+
+        fetchProducts();
+      } catch (error) {
+        console.error("Error decrementing product stock:", error);
+      }
     };
 
     return (
@@ -79,8 +88,8 @@ function ProductCards() {
                             <p className='product-desc'>{product.description}</p>
                             <div className='stock-div'>
                                 <p className='product-qty'> Stock: {product.quantity} </p>
-                                <button className='inc-btn'><b> + </b></button>
-                                <button className='dec-btn'><b> - </b></button>
+                                <button className='inc-btn' onClick={(event) => handleIncrement(event, product._id)}><b> + </b></button>
+                                <button className='dec-btn' onClick={(event) => handleDecrement(event, product._id)}><b> - </b></button>
                             </div>
                         </li>
                     </div>

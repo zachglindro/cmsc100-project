@@ -98,7 +98,7 @@ const generateSalesReportByDate = async (req,res) => {
 
     var salesReport = {}
 
-    if(sortBy == 'year'){
+    if(sortBy === 'year'){
       salesReport = orders.reduce((acc, order) => {
         const year = order.dateOrdered.getFullYear();
         if (!acc[year]) {
@@ -113,7 +113,7 @@ const generateSalesReportByDate = async (req,res) => {
         //acc[year].push(order)
         return acc;
       }, {})
-    } else if(sortBy == 'month'){
+    } else if(sortBy === 'month'){
       salesReport = orders.reduce((acc, order) => {
         const year = order.dateOrdered.getFullYear();
         const month = months[order.dateOrdered.getMonth()];
@@ -131,7 +131,7 @@ const generateSalesReportByDate = async (req,res) => {
         //acc[yearMonth].push(order)
         return acc;
       }, {})
-    } else if(sortBy == 'week') {
+    } else if(sortBy === 'week') {
       salesReport = orders.reduce((acc, order) => {
         const year = order.dateOrdered.getFullYear();
         var monthStart = months[order.dateOrdered.getMonth()];
@@ -170,4 +170,44 @@ const generateSalesReportByDate = async (req,res) => {
   }
 }
 
-export { getOrders, getActiveOrders, getConfirmedOrders, getOrderByUserAndProduct, confirmOrder, generateSalesReportByProduct, generateSalesReportByDate };
+const incrementProductStock = async (req, res) => {
+  const productId = req.body.productId;
+
+  try {
+    const product = await Product.findOne({ _id: productId });
+
+    product.quantity += 1;
+    await product.save();
+
+    res.status(201).json({ message: "Product stock incremented" });
+  } catch (error) {
+    res.status(500).json({ error: "Unable to increment product stock" });
+  }
+};
+
+const decrementProductStock = async (req, res) => {
+  const productId = req.body.productId;
+
+  try {
+    const product = await Product.findOne({ _id: productId });
+
+    product.quantity -= 1;
+    await product.save();
+
+    res.status(201).json({ message: "Product stock decremented" });
+  } catch (error) {
+    res.status(500).json({ error: "Unable to decrement product stock" });
+  }
+};
+
+export {
+  getOrders,
+  getActiveOrders,
+  getConfirmedOrders,
+  getOrderByUserAndProduct,
+  confirmOrder,
+  generateSalesReportByProduct,
+  generateSalesReportByDate,
+  incrementProductStock,
+  decrementProductStock
+};

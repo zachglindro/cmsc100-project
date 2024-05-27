@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { register, login, getUsers, getUserByUsername } from './routes/auth.js';
 import { addToCart, removeFromCart, getProducts, getProductsSorted, getProductByName, getCart, checkOut, getUserOrderTransactions, cancelOrder } from './routes/shop.js';
-import { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder, getConfirmedOrders, generateSalesReportByProduct, generateSalesReportByDate } from './routes/merchant.js';
+import { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder, generateSalesReportByProduct, generateSalesReportByDate, incrementProductStock, decrementProductStock } from './routes/merchant.js';
 import { connectionString } from './secrets.js';
 
 await mongoose.connect(connectionString);
@@ -38,4 +38,6 @@ export default function router(app) {
   app.get('/confirm-order', confirmOrder)
   app.get('/generate-sales-report-by-product', generateSalesReportByProduct)
   app.get('/generate-sales-report-by-date', generateSalesReportByDate)
+  app.put('/increment-stock', incrementProductStock);
+  app.put('/decrement-stock', decrementProductStock);
 }
