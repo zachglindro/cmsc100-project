@@ -101,7 +101,25 @@ const getCart = async (req, res) => {
   try {
     const user = await User.findOne({_id: userId});
 
-    const cart = user.shoppingCart;
+    const cart = user.shoppingCart.map(item => {
+      return {
+        _id: item._id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        img: item.img
+      };
+    });
+
+    // If there is a product out of stock, remove it from the cart
+    for (let item of cart) {
+      const product = await Product.findOne({_id: item._id});
+
+      if (product.quantity === 0) {
+        user.shoppingCart = user.shoppingCart.filter(cartItem => cartItem._id !== item._id);
+        await user.save();
+      }
+    }
     res.status(200).json(cart);
   } catch (error) {
     res.status(500).json({ error: "Unable to get cart." });
