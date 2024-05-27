@@ -191,6 +191,10 @@ const decrementProductStock = async (req, res) => {
   try {
     const product = await Product.findOne({ _id: productId });
 
+    if (product.quantity === 0) {
+      return res.status(400).json({ error: "Product stock is already 0" });
+    }
+
     product.quantity -= 1;
     await product.save();
 
