@@ -59,7 +59,10 @@ function OrderList() {
                 <p className='info'><b>Date Ordered:</b> {new Date(order.dateOrdered).toLocaleDateString()}</p>
                 <br />
                 <center>
-                  <button className='confirm-button' onClick={() => confirmOrder(order._id)} disabled={order.orderStatus === 1 || order.orderStatus === 2}>CONFIRM</button>
+                  <button className='confirm-button' onClick={() => confirmOrder(order._id)} 
+                  disabled={order.orderStatus === 1 || order.orderStatus === 2}>
+                  {order.orderStatus === 0 ? 'CONFIRM' : order.orderStatus === 2 ? 'CANCELED' : 'DONE'}
+                  </button>      
                 </center>  
               </li>
             </div>
