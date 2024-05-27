@@ -41,8 +41,8 @@ function UserList() {
     </div>
           <div className='total-users-container'>
             <p className='total-number-users'> TOTAL NUMBER OF </p>
-            <p className='total-number-users'> USERS </p>
-            <p className='total-number-users'> s {userCount} </p>
+            <p className='total-number-users'> USERS: </p>
+            <p className='total-number-users'> {userCount} </p>
       </div>
     </div>
   );
