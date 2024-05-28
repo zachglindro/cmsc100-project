@@ -53,6 +53,7 @@ function ProductCards() {
       alert('Items successfully added to basket!');
       console.log(res.data.message);
     } catch (error) {
+      alert(`Error adding product to cart: ${error.response.data.error}`);
       console.error('Error adding product to cart:', error);
     }
   };

@@ -56,6 +56,10 @@ const addToCart = async (req, res) => {
     
     for (let item of user.shoppingCart) {
       if (item.id === productId) {
+        if (product.quantity <= item.quantity) {
+          return res.status(400).json({ error: "Product out of stock." });
+        }
+
         item.quantity = item.quantity+1
         productInCart = true
       }
