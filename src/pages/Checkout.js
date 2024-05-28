@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode'; // Removed destructuring, as jwtDecode is the default export
 import axios from 'axios';
 import '../styles/Checkout.css';
 
@@ -14,18 +14,31 @@ function Checkout() {
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
   const amounttopay = subtotal + 45;
 
-  const fetchCart = useCallback(async () => {
-    try {
-      const res = await axios.get(`http://localhost:3001/get-cart?userId=${userId}`);
-      setCart(res.data);
-    } catch (error) {
-      console.error('Error fetching cart:', error);
-    }
-  });
+  // const fetchCart = useCallback(async () => {
+  //   try {
+  //     const res = await axios.get(`http://localhost:3001/get-cart?userId=${userId}`);
+  //     setCart(res.data);
+  //   } catch (error) {
+  //     console.error('Error fetching cart:', error);
+  //   }
+  // });
+
+  // useEffect(() => {
+  //   fetchCart();
+  // }, [fetchCart]);
 
   useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3001/get-cart?userId=${userId}`);
+        setCart(res.data);
+      } catch (error) {
+        console.error('Error fetching cart:', error);
+      }
+    };
+
     fetchCart();
-  }, [fetchCart]);
+  });
 
   const handleConfirmCheckout = async () => {
     try {
@@ -52,7 +65,7 @@ function Checkout() {
                   <div className='item-details-container'>
                     <p className='checkout-item-name'><b>{item.name}</b></p>
                     <p className='checkout-item-qty'>Quantity: {item.quantity}</p>
-                    <p className='checkout-item-amount'><b>${item.price * item.quantity}</b></p>
+                    <p className='checkout-item-amount'><b>${(item.price * item.quantity).toFixed(2)}</b></p>
                   </div>
                 </li>
               ))}

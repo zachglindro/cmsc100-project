@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode'; // Removed destructuring, as jwtDecode is the default export
 import axios from 'axios';
 import '../styles/Basket.css';
 
@@ -15,18 +15,31 @@ function Basket() {
   const totalItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
-  const fetchCart = useCallback(async () => {
-    try {
-      const res = await axios.get(`http://localhost:3001/get-cart?userId=${userId}`);
-      setCart(res.data);
-    } catch (error) {
-      console.error('Error fetching cart:', error);
-    }
-  });
+  // const fetchCart = useCallback(async () => {
+  //   try {
+  //     const res = await axios.get(`http://localhost:3001/get-cart?userId=${userId}`);
+  //     setCart(res.data);
+  //   } catch (error) {
+  //     console.error('Error fetching cart:', error);
+  //   }
+  // });
+
+  // useEffect(() => {
+  //   fetchCart();
+  // }, [fetchCart]);
 
   useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3001/get-cart?userId=${userId}`);
+        setCart(res.data);
+      } catch (error) {
+        console.error('Error fetching cart:', error);
+      }
+    };
+
     fetchCart();
-  }, [fetchCart]);
+  });
 
   const removeFromCart = async (productId) => {
     try {
@@ -36,7 +49,6 @@ function Basket() {
       console.error('Error removing item from cart:', error);
     }
   };
-
 
   const handleCheckout = () => {
     navigate('/checkoutpage');
