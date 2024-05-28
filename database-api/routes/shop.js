@@ -188,9 +188,13 @@ const getUserOrderTransactions = async (req, res) => {
 const cancelOrder = async (req,res) => {
   try {
     const orderTransaction = await OrderTransaction.findOne({_id: req.query.transactionId})
+    const product = await Product.findOne({_id: orderTransaction.productId})
 
     orderTransaction.orderStatus = '2'
     await orderTransaction.save()
+    
+    product.quantity += orderTransaction.orderQty
+    await product.save()
 
     res.status(201).json({message: "Order successfully canceled"})
   } catch (error) {
