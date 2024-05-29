@@ -31,7 +31,7 @@
     <img src="src/assets/welcome/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">FarmToTable</h3>
+<h3 align="center">Field to Feast</h3>
   <p align="center">
     Field to Feast is an e-commerce website that helps farmers sell their produce directly to consumers. 
     <br />
@@ -65,8 +65,8 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+![Field To Feast shop page](https://github.com/zachglindro/cmsc100-project/assets/66626397/ae2bfb2a-57d1-431b-ac78-ceb8e706d5ee)
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 About the Project
 
