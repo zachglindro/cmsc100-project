@@ -53,7 +53,7 @@ function Login({handleLogin}) {
                 <br />
                 <div className="sign-up-link"> 
 
-                <p> No account yet? <a href='http://localhost:3000/signup'> Sign Up </a></p>
+                <p> No account yet? <a className="link" href='http://localhost:3000/signup'> Sign Up </a></p>
                 </div>
                 </div>
                 </form>
