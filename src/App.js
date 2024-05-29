@@ -49,9 +49,6 @@ function App() {
     <div className='App'>
       <Navbar handleLogout={handleLogout} />
       <Routes>
-        <Route path='/' element={<Login handleLogin={handleLogin} />} />
-        <Route path='/login' element={<Login handleLogin={handleLogin} />} />
-        <Route path='/signup' element={<SignUp />} />
         {/* Render routes for customers */}
         {token && userType === 'customer' && (
           <>
@@ -75,7 +72,14 @@ function App() {
           </>
         )}
         {/* Redirect to login if user is not signed in */}
-        {!token && <Route path='*' element={<Navigate to="/login" />} />}
+        {!token && (
+          <>
+            <Route path='*' element={<Navigate to="/login" />} />
+        <Route path='/' element={<Login handleLogin={handleLogin} />} />
+        <Route path='/login' element={<Login handleLogin={handleLogin} />} />
+        <Route path='/signup' element={<SignUp />} />
+          </>
+          )}
       </Routes>      
     </div>
   );

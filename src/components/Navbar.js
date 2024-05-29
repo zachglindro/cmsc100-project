@@ -24,6 +24,7 @@ function Navbar() {
 
     const handleSignOut = () => {
         localStorage.removeItem('token')
+        window.location.reload();
         navigate('/login')
     }
 
