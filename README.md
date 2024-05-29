@@ -173,10 +173,6 @@ To get a local copy up and running follow these simple steps.
    npm install
    cd database-api && npm install
    ```
-3. Enter your MongoDB connection string in `database-api/secrets.js`
-   ```sh
-   echo "export const connectionString = yourConnectionString" > database-api/secrets.js
-   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
