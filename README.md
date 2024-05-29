@@ -71,6 +71,12 @@
 ## Project Features
 
   ### User Management
+
+![signup-page](https://github.com/zachglindro/cmsc100-project/assets/113424409/ecb922a4-fce2-4c5e-b8bf-086f9b90a4fb)
+
+
+  ![login-page](https://github.com/zachglindro/cmsc100-project/assets/113424409/f17a8ac2-b060-4fb4-aeb5-e4274e2e0f16)
+
   #### - User Registration and Login
       - Users can not be able to register with an already existing email and username.
       - Automatic assignment as customer users upon sign-up.
@@ -83,32 +89,57 @@
       - Protected routes to ensure admin-exclusive access where necessary.
       
   ### Customer (Shop)
+
+![customer-products-page](https://github.com/zachglindro/cmsc100-project/assets/113424409/a01aed92-43fd-4027-a927-e05ccbaf28b9)
+
   #### - Product Listings
       - View products categorized by name, type (crops or poultry), price, and quantity.
       - Sort products in ascending or descending order based on the mentioned categories.
+      
+![customer-basket](https://github.com/zachglindro/cmsc100-project/assets/113424409/3a58923b-8d2c-4a6d-ba96-8e1429c4fd76)
+  
   #### - Shopping Cart Management
        - Add items to the cart.
        - Delete items from the cart.
        - Count and display the total number of items in the cart.
        - Display the total price of items in the cart.
+
+![customer-orders-page](https://github.com/zachglindro/cmsc100-project/assets/113424409/676375aa-3e0e-4670-8644-7f932578d746)
+
   #### - Order Management
       - Create orders from the shopping cart.
       - Option to cancel orders if not confirmed by the admin.
       - Default transaction mode is cash-on-delivery.
 
   ### Administrator (DA)
+
+  ![merchant-dashboard-page](https://github.com/zachglindro/cmsc100-project/assets/113424409/906042be-0718-4e07-a9f2-da7d1b39a75c)
+
   #### - Dashboard
       - Centralized dashboard for managing e-commerce activities.
+
+![dashboard-accounts-page](https://github.com/zachglindro/cmsc100-project/assets/113424409/8931b68d-1518-429b-9d3f-c8c4b09a382f)
+
+      
   #### - User Account Management
       - View and manage the list of registered users.
       - Generate reports on the total number of users.
+
+![merchant-products-page](https://github.com/zachglindro/cmsc100-project/assets/113424409/964e2841-3c93-4482-b4f1-52f5ebe40bb4)
+
   #### - Product Listings Management
       - Add and update products including name, type, price, description, and quantity.
       - Sort product listings by name, type, price, or quantity.
+
+![merchant-orders-page](https://github.com/zachglindro/cmsc100-project/assets/113424409/7610f8d1-f8c5-4dff-bea7-1b87f7c9891c)
+
   #### - Order Fulfillment
       - Confirm customer orders.
       - Update inventory upon order confirmation.
       - Track order status (Pending, Completed, Canceled).
+
+![merchant-sales-page](https://github.com/zachglindro/cmsc100-project/assets/113424409/515ddae6-f61e-4ff1-a813-14e8984c6c1b)
+
   #### - Sales Reports
       - View detailed sales reports by product, including income generated.
       - Generate summary reports of transactions on a weekly, monthly, and annual basis.
