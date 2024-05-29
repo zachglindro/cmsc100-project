@@ -86,7 +86,7 @@ function ProductCards() {
               <li>
                 <center><img src={product.img} alt={product.name} className="product-image" /></center>
                 <p className='product-name'><b><i>{product.name}</i></b></p>
-                <p className='product-price'>${product.price} | Stock: {product.quantity}</p>
+                <p className='product-price'><b>${product.price}</b> | Stock: {product.quantity}</p>
                 <p className='product-desc'>{product.description}</p>
                 <br />
                 <center><button 
