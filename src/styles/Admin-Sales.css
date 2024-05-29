@@ -59,8 +59,7 @@
     width: 1250px;
     height: 375px;
     background: rgba(239, 237, 255, 0.30);
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
+    border-radius: 30px;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
