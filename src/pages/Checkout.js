@@ -12,7 +12,7 @@ function Checkout() {
 
   const [cart, setCart] = useState([]);
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  const amounttopay = subtotal + 45;
+  const amounttopay = subtotal + 0;
 
   // const fetchCart = useCallback(async () => {
   //   try {
@@ -74,7 +74,7 @@ function Checkout() {
         </div>
         <div className='computation-summary-container'>
           <p className='checkout-subtotal'>Subtotal:  <span className='spacing-subtotal'></span><b>${subtotal.toFixed(2)}</b></p>
-          <p className='checkout-sf'>Shipping Fee: <span className='spacing-sf'></span><b>$45.00</b></p>
+          <p className='checkout-sf'>Shipping Fee: <span className='spacing-sf'></span><b>$0.00</b></p>
           <p className='checkout-mop'>Mode of Payment: <span className='spacing-mop'></span><b>Cash on Delivery</b></p>
           <p className='checkout-atp'>Amount to Pay:  <span className='spacing-atp'></span><b>${amounttopay.toFixed(2)}</b></p>
           <button className='confirm-check-out-btn' onClick={handleConfirmCheckout}><b> CONFIRM CHECK OUT </b></button>
