@@ -28,9 +28,9 @@ function UserList() {
         {users.map(user => (
           <div className='account-card' key={(user._id)}>
             <li>
+              <p className='info'><b>User Type:</b> {user.userType}</p>
               <p className='info'><b>First Name:</b> {user.fname}</p>
               <p className='info'><b>Last Name:</b> {user.lname}</p>
-              <p className='info'><b>User Type:</b> {user.userType}</p>
               <p className='info'><b>Username:</b> {user.username}</p>
               <p className='info'><b>Email:</b> {user.email}</p>
               {/* <p><b>Shopping Cart:</b> {user.shoppingCart.map(product => product.name).join(', ')}</p> */}
