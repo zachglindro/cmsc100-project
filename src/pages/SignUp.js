@@ -73,7 +73,7 @@ function SignUp() {
           {/* <br /> */}
           <button className='sign-up-button' type='submit'> Sign Up </button>
           <br />
-          <p className="log-in-link">Already have an account? Log in<a href='http://localhost:3000/login'> here</a></p>
+          <p className="log-in-link">Already have an account? Log in<a className="link" href='http://localhost:3000/login'> here</a></p>
           <br />
           </div>
         </form>
