@@ -42,7 +42,7 @@ function SignUp() {
       navigate('/login')
     })
     .catch((error) => {
-      console.log('Unable to register user!')
+      alert(`Unable to register user! Error: ${error.response.data.error}`)
     })
   }
 
