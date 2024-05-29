@@ -22,9 +22,6 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 
 
 <!-- PROJECT LOGO -->
@@ -36,11 +33,10 @@
 
 <h3 align="center">FarmToTable</h3>
   <p align="center">
-    project_description
+    Field to Feast is an e-commerce website that helps farmers sell their produce directly to consumers. 
     <br />
   </p>
 </div>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -61,10 +57,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
@@ -76,32 +68,25 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `zachglindro`, `cmsc100-project`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `FarmToTable`, `project_description`
+About the Project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 ### Built With
-
 * [![React][React.js]][React-url]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
+To get a local copy up and running follow these simple steps.
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
+[Node.js and npm are required to run this project.](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
 
 ### Installation
 
@@ -109,37 +94,33 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    git clone https://github.com/zachglindro/cmsc100-project.git
    ```
-2. Install NPM packages
+2. Install NPM packages for the frontend and backend
    ```sh
    npm install
+   cd database-api && npm install
    ```
-3. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Enter your MongoDB connection string in `database-api/secrets.js`
+   ```sh
+   echo "export const connectionString = yourConnectionString" > database-api/secrets.js
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 <!-- USAGE EXAMPLES -->
 ## Usage
+
+To run the project, start the frontend and backend servers.
+```sh
+npm start
+cd database-api && npm start
+```
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
