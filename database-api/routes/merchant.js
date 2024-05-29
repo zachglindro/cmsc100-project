@@ -92,7 +92,7 @@ const generateSalesReportByProduct = async (req,res) => {
 // return a list of completed order transactions separated by week, month or year
 const generateSalesReportByDate = async (req,res) => {
   try {
-    const orders = await OrderTransaction.find({orderStatus: '1'});
+    const orders = await OrderTransaction.find({orderStatus: '1'}).sort({dateOrdered: 'asc'});
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const sortBy = req.query.sortBy
 
