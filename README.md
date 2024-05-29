@@ -68,7 +68,50 @@
 ![Field To Feast shop page](https://github.com/zachglindro/cmsc100-project/assets/66626397/ae2bfb2a-57d1-431b-ac78-ceb8e706d5ee)
 
 
-About the Project
+## Project Features
+
+  # User Management
+  # - User Registration and Login
+      - Users can not be able to register with an already existing email and username.
+      - Automatic assignment as customer users upon sign-up.
+  # - Admin (DA) Account
+      - Pre-assigned DA account for managing the catalog and administrative tasks.
+      - Admin can manage user accounts, product listings, order fulfillment, and view sales reports.
+  # - Authentication
+      - Only registered users can access the website.
+      - Customers can log in and log out.
+      - Protected routes to ensure admin-exclusive access where necessary.
+      
+  # Customer (Shop)
+  # - Product Listings
+      - View products categorized by name, type (crops or poultry), price, and quantity.
+      - Sort products in ascending or descending order based on the mentioned categories.
+  # - Shopping Cart Management
+       - Add items to the cart.
+       - Delete items from the cart.
+       - Count and display the total number of items in the cart.
+       - Display the total price of items in the cart.
+  # - Order Management
+      - Create orders from the shopping cart.
+      - Option to cancel orders if not confirmed by the admin.
+      - Default transaction mode is cash-on-delivery.
+
+  # Administrator (DA)
+  # - Dashboard
+      - Centralized dashboard for managing e-commerce activities.
+  # - User Account Management
+      - View and manage the list of registered users.
+      - Generate reports on the total number of users.
+  # - Product Listings Management
+      - Add and update products including name, type, price, description, and quantity.
+      - Sort product listings by name, type, price, or quantity.
+  # - Order Fulfillment
+      - Confirm customer orders.
+      - Update inventory upon order confirmation.
+      - Track order status (Pending, Completed, Canceled).
+  # - Sales Reports
+      - View detailed sales reports by product, including income generated.
+      - Generate summary reports of transactions on a weekly, monthly, and annual basis.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
