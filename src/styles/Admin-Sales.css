@@ -55,6 +55,86 @@
     padding-left: 10px;
 }
 
+.trans-sales-summary-table {
+    width: 1250px;
+    height: 375px;
+    background: rgba(239, 237, 255, 0.30);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 35px;
+    
+}
+
+.trans-sales-summary-table::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 45px;
+}
+
+.trans-sales-summary-table::-webkit-scrollbar-track {
+    background: rgba(217, 217, 217, 0.2);
+    border-radius: 10px;
+}
+
+.trans-sales-summary-table::-webkit-scrollbar-thumb {
+    background: rgba(217, 217, 217, 0.4);
+    border-radius: 10px;
+}
+
+.trans-sales-summary-table::-webkit-scrollbar-thumb:hover {
+    background: rgba(217, 217, 217, 0.6);
+}
+
+.trans-sales-summary-table {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2);
+}
+
+.trans-sales-summary-table {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(217, 217, 217, 0.4) rgba(217, 217, 217, 0.2);
+}
+
+.trans-sales-summary {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.trans-sales {
+    display: flex;
+    height: 185px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 5px;
+    color: white;
+    border-radius: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.trans-sales p {
+    margin: 0;
+    text-align: center;
+}
+
+.trans-sales-details-div {
+    width: 40%;
+}
+
+.report-date, .report-total-income, .report-prod-summary {
+    text-align: left !important;
+}
+
 .sales-summary-table {
     width: 1250px;
     height: 375px;
@@ -141,5 +221,7 @@
 .total-sales {
     color: white;
     font-size: 25px;
-    transform: translateX(450px);
+    transform: translateX(470px);
+    margin-top: 10px;
+    margin-bottom: 30px;
 }

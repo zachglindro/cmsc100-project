@@ -2,7 +2,6 @@
     height: 550px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
 }
 
 
@@ -19,7 +18,7 @@
 
 
 .account-cards-container {
-    width: 50%;
+    width: 670px;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -27,6 +26,8 @@
     overflow-y: auto; /* Add vertical scrollbar if content overflows */
     box-sizing: border-box; /* Include padding and border in the width */
     padding-top: 10px;
+    margin-left: 20px;
+    padding-right: 20px;
 }
 
 /* Custom scrollbar styles for Webkit browsers */
@@ -70,15 +71,26 @@
 }
 
 .account-card{
+    width: 100%;
     display: inline;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+    border-bottom-style: solid;
+    border-top: 2px;
+    border-left: 2px;
+    border-color: white;
+    padding-bottom: 40px;
+    padding-left: 20px;
 }
 
 .info{
-    padding-top: 5px;
-    margin-bottom: 0;
+    padding-top: 10px;
+    margin-bottom: 10px;
     color: white;
     font-size: 22px;
     text-align: center; /* Center-align text */
+    padding: 0px;
 }
 
 .total-number-users{
@@ -89,6 +101,7 @@
 }
 
 .total-users-container{
+    width: 645px;
     display: flex;
     align-content: center;
     justify-content: center;

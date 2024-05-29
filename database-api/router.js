@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 import { register, login, getUsers, getUserByUsername } from './routes/auth.js';
 import { addToCart, removeFromCart, getProducts, getProductsSorted, getProductByName, getCart, checkOut, getUserOrderTransactions, cancelOrder } from './routes/shop.js';
-import { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder, getConfirmedOrders, generateSalesReportByProduct, generateSalesReportByDate } from './routes/merchant.js';
-import { getCheckoutCart } from './routes/checkout.js';
+import { getOrders, getActiveOrders, getOrderByUserAndProduct, confirmOrder, generateSalesReportByProduct, generateSalesReportByDate, incrementProductStock, decrementProductStock } from './routes/merchant.js';
+import { connectionString } from './secrets.js';
 
-await mongoose.connect('mongodb+srv://achillesheel0525:jokelangyungpassw0rd@fortesting.q8ml0qz.mongodb.net/farmToTable');
+await mongoose.connect(connectionString);
 
 export default function router(app) {
  	// Allow Cross Origin Resource Sharing
@@ -31,7 +31,6 @@ export default function router(app) {
   app.get('/checkout', checkOut)
   app.get('/cancel-order', cancelOrder)
   app.get('/get-user-orders', getUserOrderTransactions)
-  app.get('/get-checkout-cart', getCheckoutCart)
   
   app.get('/get-orders', getOrders)
   app.get('/get-active-orders', getActiveOrders)
@@ -39,4 +38,6 @@ export default function router(app) {
   app.get('/confirm-order', confirmOrder)
   app.get('/generate-sales-report-by-product', generateSalesReportByProduct)
   app.get('/generate-sales-report-by-date', generateSalesReportByDate)
+  app.put('/increment-stock', incrementProductStock);
+  app.put('/decrement-stock', decrementProductStock);
 }

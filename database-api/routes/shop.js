@@ -56,6 +56,10 @@ const addToCart = async (req, res) => {
     
     for (let item of user.shoppingCart) {
       if (item.id === productId) {
+        if (product.quantity <= item.quantity) {
+          return res.status(400).json({ error: "Product out of stock." });
+        }
+
         item.quantity = item.quantity+1
         productInCart = true
       }
@@ -101,7 +105,25 @@ const getCart = async (req, res) => {
   try {
     const user = await User.findOne({_id: userId});
 
-    const cart = user.shoppingCart;
+    const cart = user.shoppingCart.map(item => {
+      return {
+        _id: item._id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        img: item.img
+      };
+    });
+
+    // If there is a product out of stock, remove it from the cart
+    for (let item of cart) {
+      const product = await Product.findOne({_id: item._id});
+
+      if (product.quantity === 0) {
+        user.shoppingCart = user.shoppingCart.filter(cartItem => cartItem._id !== item._id);
+        await user.save();
+      }
+    }
     res.status(200).json(cart);
   } catch (error) {
     res.status(500).json({ error: "Unable to get cart." });
@@ -170,9 +192,13 @@ const getUserOrderTransactions = async (req, res) => {
 const cancelOrder = async (req,res) => {
   try {
     const orderTransaction = await OrderTransaction.findOne({_id: req.query.transactionId})
+    const product = await Product.findOne({_id: orderTransaction.productId})
 
     orderTransaction.orderStatus = '2'
     await orderTransaction.save()
+    
+    product.quantity += orderTransaction.orderQty
+    await product.save()
 
     res.status(201).json({message: "Order successfully canceled"})
   } catch (error) {

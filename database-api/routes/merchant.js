@@ -92,68 +92,126 @@ const generateSalesReportByProduct = async (req,res) => {
 // return a list of completed order transactions separated by week, month or year
 const generateSalesReportByDate = async (req,res) => {
   try {
-    const orders = await OrderTransaction.find({orderStatus: '1'});
+    const orders = await OrderTransaction.find({orderStatus: '1'}).sort({dateOrdered: 'asc'});
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const sortBy = req.query.sortBy
 
-    console.log(sortBy)
+    var salesReport = {}
 
-    const salesReportYearly = orders.reduce((acc, order) => {
-      const year = order.dateOrdered.getFullYear();
-      if (!acc[year]) {
-        acc[year] = []
-      }
-      acc[year].push(order)
-      return acc;
-    }, {})
+    if(sortBy === 'year'){
+      salesReport = orders.reduce((acc, order) => {
+        const year = order.dateOrdered.getFullYear();
+        if (!acc[year]) {
+          acc[year] = {
+            date: year,
+            totalIncome: 0,
+            productSummary: []
+          }
+        }
+        acc[year].totalIncome += order.amountToPay
+        acc[year].productSummary.push(order.productName.concat(" x", order.orderQty))
+        //acc[year].push(order)
+        return acc;
+      }, {})
+    } else if(sortBy === 'month'){
+      salesReport = orders.reduce((acc, order) => {
+        const year = order.dateOrdered.getFullYear();
+        const month = months[order.dateOrdered.getMonth()];
+        const yearMonth = month.concat(" ", year)
 
-    const salesReportMonthly = orders.reduce((acc, order) => {
-      const year = order.dateOrdered.getFullYear();
-      const month = months[order.dateOrdered.getMonth()];
-      const yearMonth = month.concat(" ", year)
+        if (!acc[yearMonth]) {
+          acc[yearMonth] = {
+            date: yearMonth,
+            totalIncome: 0,
+            productSummary: []
+          }
+        }
+        acc[yearMonth].totalIncome += order.amountToPay
+        acc[yearMonth].productSummary.push(order.productName.concat(" x", order.orderQty))
+        //acc[yearMonth].push(order)
+        return acc;
+      }, {})
+    } else if(sortBy === 'week') {
+      salesReport = orders.reduce((acc, order) => {
+        const year = order.dateOrdered.getFullYear();
+        var monthStart = months[order.dateOrdered.getMonth()];
+        var monthEnd = monthStart
+        var weekStart = order.dateOrdered.getDate() - order.dateOrdered.getDay();
+        var weekEnd = weekStart + 7;
+        if(weekEnd > 31){
+          monthEnd = months[order.dateOrdered.getMonth()+1]
+          weekEnd = weekEnd - 31
+        }
+        if(weekEnd < 1){
+          monthStart = months[order.dateOrdered.getMonth()-1]
+          weekEnd = weekStart + 31
+        }
 
-      if (!acc[yearMonth]) {
-        acc[yearMonth] = []
-      }
-      acc[yearMonth].push(order)
-      return acc;
-    }, {})
+        const week = monthStart.concat(" ", weekStart, "-", monthEnd, " ", weekEnd, " ", year)
 
-    const salesReportWeekly = orders.reduce((acc, order) => {
-      const year = order.dateOrdered.getFullYear();
-      var monthStart = months[order.dateOrdered.getMonth()];
-      var monthEnd = monthStart
-      var weekStart = order.dateOrdered.getDate() - order.dateOrdered.getDay();
-      var weekEnd = weekStart + 7;
-      if(weekEnd > 31){
-        monthEnd = months[order.dateOrdered.getMonth()+1]
-        weekEnd = weekEnd - 31
-      }
-      if(weekEnd < 1){
-        monthStart = months[order.dateOrdered.getMonth()-1]
-        weekEnd = weekStart + 31
-      }
-
-      const week = monthStart.concat(" ", weekStart, "-", monthEnd, " ", weekEnd, " ", year)
-
-      if (!acc[week]) {
-        acc[week] = []
-      }
-      acc[week].push(order)
-      return acc;
-    }, {})
-
-    if(sortBy == 'year'){
-      res.status(201).json(salesReportYearly);
-    } else if(sortBy == 'month'){
-      res.status(201).json(salesReportMonthly);
-    } else if(sortBy == 'week'){
-      res.status(201).json(salesReportWeekly);
+        if (!acc[week]) {
+          acc[week] = {
+            date: week,
+            totalIncome: 0,
+            productSummary: []
+          }
+        }
+        acc[week].totalIncome += order.amountToPay
+        acc[week].productSummary.push(order.productName.concat(" x", order.orderQty))
+        //acc[week].push(order)
+        return acc;
+      }, {})
     }
+
+    res.status(201).json(Object.values(salesReport));
   } catch (error) {
     res.status(500).json({ error: "Unable to get orders." });
     console.log(error)
   }
 }
 
-export { getOrders, getActiveOrders, getConfirmedOrders, getOrderByUserAndProduct, confirmOrder, generateSalesReportByProduct, generateSalesReportByDate };
+const incrementProductStock = async (req, res) => {
+  const productId = req.body.productId;
+
+  try {
+    const product = await Product.findOne({ _id: productId });
+
+    product.quantity += 1;
+    await product.save();
+
+    res.status(201).json({ message: "Product stock incremented" });
+  } catch (error) {
+    res.status(500).json({ error: "Unable to increment product stock" });
+  }
+};
+
+const decrementProductStock = async (req, res) => {
+  const productId = req.body.productId;
+
+  try {
+    const product = await Product.findOne({ _id: productId });
+
+    if (product.quantity === 0) {
+      return res.status(400).json({ error: "Product stock is already 0" });
+    }
+
+    product.quantity -= 1;
+    await product.save();
+
+    res.status(201).json({ message: "Product stock decremented" });
+  } catch (error) {
+    res.status(500).json({ error: "Unable to decrement product stock" });
+  }
+};
+
+export {
+  getOrders,
+  getActiveOrders,
+  getConfirmedOrders,
+  getOrderByUserAndProduct,
+  confirmOrder,
+  generateSalesReportByProduct,
+  generateSalesReportByDate,
+  incrementProductStock,
+  decrementProductStock
+};

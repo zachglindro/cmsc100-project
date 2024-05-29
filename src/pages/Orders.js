@@ -14,7 +14,7 @@ function Orders() {
     const fetchOrderTransactions = async () => {
       try {
         const res = await axios.get(`http://localhost:3001/get-user-orders?userId=${userId}`);
-        setOrderTransactions(res.data);
+        setOrderTransactions(sortOrders(res.data));
       } catch (error) {
         console.error('Error fetching order transactions:', error);
       }
@@ -23,13 +23,21 @@ function Orders() {
     fetchOrderTransactions();
   }, [userId]);
 
+  const sortOrders = (orders) => {
+    return orders.sort((a, b) => {
+      if (a.orderStatus === 0 && b.orderStatus !== 0) return -1;
+      if (a.orderStatus !== 0 && b.orderStatus === 0) return 1;
+      return 0; // Maintain the original order if both have the same status
+    });
+  };
+
   const handleCancelOrder = async (transactionId, index) => {
     try {
       await axios.get(`http://localhost:3001/cancel-order?transactionId=${transactionId}`);
       setOrderTransactions(prevTransactions => {
         const updatedTransactions = [...prevTransactions];
         updatedTransactions[index].orderStatus = 2; // Marking as cancelled
-        return updatedTransactions;
+        return sortOrders(updatedTransactions); // Re-sort the orders after updating
       });
       alert('Are you sure you want to cancel this order?');
     } catch (error) {

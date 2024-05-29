@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     lname: {type: String, required: true},
     userType: {type: String, required: true},
     username: {type: String, required: true, unique: true},
-    email: {type: String, required: true},
+    email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     shoppingCart: {type: [Product.schema]}
 });
